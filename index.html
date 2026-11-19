@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Тая — персональная аналитика</title><link rel="icon" href="./assets/icons/taya.svg"><link rel="stylesheet" href="./styles.css?v=5"></head><body>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Тая — персональная аналитика</title><link rel="icon" href="./assets/icons/taya.svg"><link rel="stylesheet" href="./styles.css?v=6"></head><body>
 <main>
 <section id="landing" class="landing" aria-labelledby="page-title">
 <div class="landing-brand"><img src="./assets/icons/taya.svg" alt="" width="40" height="40"><span>Тая</span></div>
@@ -10,7 +10,7 @@
 </section>
 <section id="prototype" class="prototype-view" aria-label="Прототип Таи" hidden>
 <div class="prototype-controls"><button id="close-prototype">Вернуться к описанию</button><button id="reset-demo">Начать заново</button></div>
-<div class="prototype-stage"><div id="phone-wrap" class="phone-wrap">
+<header class="stage-heading" aria-live="polite"><p id="phase-label">этап 1</p><h2 id="phase-title">Путь до точки входа</h2><p id="phase-description">Сценарий проигрывается автоматически</p></header><div class="prototype-stage"><div id="phone-wrap" class="phone-wrap">
         <div class="phone" id="phone">
           <div class="screen">
             <div class="status-bar" aria-hidden="true"><b>9:41</b><span class="dynamic-island"></span><span class="status-icons"><img src="./assets/icons/signal.svg" alt=""><img src="./assets/icons/battery.svg" alt=""></span></div>
@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-</div><div class="scenario-picker" aria-labelledby="scenario-heading">
+</div><section id="playback-panel" class="playback-panel" aria-label="Воспроизведение пути"><div class="playback-top"><button id="toggle-playback">Пауза</button><span id="playback-time">0:00 / 0:13</span></div><div class="playback-track" role="progressbar" aria-label="Прогресс воспроизведения" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="playback-progress"></div></div><div class="playback-labels"><span>Главная</span><span>Операции</span><span>Тая</span></div></section><div id="scenario-picker" hidden class="scenario-picker" aria-labelledby="scenario-heading">
         <div class="picker-heading"><h2 id="scenario-heading">Какую историю пройдём?</h2><span>Выбор для демонстрации</span></div>
         <div class="scenario-options">
           <button class="scenario-card active" data-scenario="friends" aria-pressed="true"><strong>Общий счёт</strong><span>Вернули друзья — это доход?</span></button>
@@ -29,5 +29,5 @@
         </div>
         
       </div>
-</section>
-</main><section id="print-report" class="print-report" aria-hidden="true"></section><script type="module" src="./app.mjs?v=5"></script></body></html>
+<section id="completion" class="completion" hidden aria-live="polite"><img src="./assets/icons/check.svg" alt="" width="28" height="28"><h2>Вы прошли сценарий!</h2><p id="completion-summary"></p><div><button id="choose-another" class="view-prototype">Решить другую задачу</button><button id="restart-all">Начать с самого начала</button></div></section></section>
+</main><section id="print-report" class="print-report" aria-hidden="true"></section><script type="module" src="./app.mjs?v=6"></script></body></html>

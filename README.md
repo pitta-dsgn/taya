@@ -1,35 +1,34 @@
-# Тая — персональная аналитика
+# Taya — guided analytics prototype
 
-Интерактивный дизайн-концепт для Design Boost: пользователь изучает операции, Тая предлагает помощь, уточняет задачу и собирает проверяемый отчёт.
+A static, build-free presentation of personalized financial analytics. The interface is based on the Taya Figma file and the supplied T-Bank references. All financial data and dialogues are fictional; the prototype has no AI backend and makes no bank requests.
 
-## Сценарии
+## Experience
 
-- **Общий счёт:** выбрать возвраты друзей, увидеть свою часть покупки и личные расходы, проверить связанные операции.
-- **Крупная покупка:** исключить компьютер из аналитики, сравнить месяцы и категории, вернуть покупку в расчёт.
-- **Зарплата:** выбрать переводы работодателя, указать ожидаемую сумму, сравнить поступления, подготовить вопрос бухгалтерии. Расхождение не считается доказанной недоплатой.
+1. **Automatic introduction:** Home → scroll → Operations overview → Expenses → animated donut → Taya offer. The 13-second timeline supports pause, resume and replay. No app input is needed during this stage.
+2. **Interactive Taya:** choose a problem outside the phone. A Russian keyboard appears and the request is typed and submitted automatically. The visitor then chooses replies, reviews transactions and scrolls the complete conversation. Back minimizes the existing chat into a floating bubble; reopening restores the conversation and scroll position.
+3. **Completion:** finish after reviewing a result, then choose another problem or restart the entire introduction.
 
-Выбор сценария расположен вне телефона. Внутри приложения запрос можно редактировать и отправлять самостоятельно. Диалоги подготовлены заранее; это не подключённая нейросеть. Все данные вымышлены, банковские счета не подключаются. Изменения касаются только демонстрационной аналитики.
+Scenarios cover salary reconciliation, a large purchase excluded from analytics, and confirmed friend refunds linked to a shared bill. Selection changes recalculate totals. Original transaction history remains unchanged.
 
-## Запуск
+## Development
 
-Нужен Node.js 20 или новее. Внешние зависимости отсутствуют.
+Node.js 20+, no dependencies:
 
 ```sh
 npm run dev
+npm test
 ```
 
-Открыть http://localhost:5173. Проверки расчётов: `npm test`.
+Open http://localhost:5173. `node build-preview.mjs` produces a standalone `preview.html` for offline viewing.
 
-## GitHub Pages
+## Publication
 
-Settings → Pages → Deploy from a branch → main → / (root) → Save.
+GitHub Pages: Settings → Pages → Deploy from a branch → main → / (root).
 
-Сайт: https://pitta-dsgn.github.io/taya/
+https://pitta-dsgn.github.io/taya/
 
-Все ссылки на ресурсы относительные. Сборка и секреты не нужны. PDF доступен через меню ответа → «Сохранить в PDF» и системный диалог печати.
+SVG icons and illustrations live in `assets/icons/`. Navigation, chart controls and merchant icons are exported from the source Figma components. The phone uses an explicit SF Pro / native Apple system font stack. On platforms without these fonts, the installed sans-serif fallback is used; proprietary Apple font files are not redistributed.
 
-## Контрольные суммы
+## Validation
 
-Ноябрь: 253 000 ₽; без компьютера: 53 000 ₽; октябрь: 50 000 ₽. Сентябрь — ноябрь: 351 000 ₽. Общий ужин: 8 000 ₽, возвраты Ани и Дани: 6 000 ₽, собственная часть: 2 000 ₽. Перевод Маши 1 500 ₽ по умолчанию не включён. Выплаты работодателя по месяцам: 74 500 / 104 800 / 81 200 ₽, всего 260 500 ₽.
-
-Дизайн основан на макетах проекта «Тая» и материалах Т-Банка. Знак Таи и навигационные иконки экспортированы из исходного файла Figma. Интерфейс реализован HTML/CSS/SVG, не изображением экрана.
+`npm test` covers financial reconciliation, routing, escaping user input, immutable chat history, automatic draft punctuation, playback pause/resume and cancellation. Browser verification covers the full introduction, typing, persistent history, minimization/restoration and the scenario completion flow.
