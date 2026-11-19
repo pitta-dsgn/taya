@@ -1,58 +1,33 @@
 <!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f5f2">
-  <meta name="description" content="Интерактивный концепт Таи: персональная аналитика операций по вашему вопросу. Три сценария с проверяемыми расчётами.">
-  <title>Тая — ваш вопрос, ваш расчёт</title>
-  <link rel="icon" href="./assets/taya.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css?v=2">
-</head>
-<body>
-  <header class="site-header">
-    <a class="brand" href="./" aria-label="Тая, на главную"><img src="./assets/taya.svg" alt="" width="32" height="32"><span>Тая<span class="brand-caption">персональная аналитика</span></span></a>
-    <nav aria-label="О проекте"><span class="concept-label">Интерактивный концепт</span><a href="https://www.figma.com/design/Ldhr6lBVxPfwkPwzl5S1Oz?node-id=18-53" target="_blank" rel="noopener">Макеты <svg class="external-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><a href="https://github.com/pitta-dsgn/taya" target="_blank" rel="noopener">GitHub <svg class="external-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></nav>
-  </header>
-  <main class="presentation">
-    <section class="intro" aria-labelledby="page-title">
-      <p class="eyebrow"><span></span> Design Boost / разминка №10</p>
-      <h1 id="page-title">У каждого вопроса —<br><span>свой расчёт.</span></h1>
-      <p class="lead">Общая сумма не всегда объясняет, что происходит с деньгами. Тая уточнит ваш вопрос и соберёт аналитику, которая на него отвечает.</p>
-      <button class="start-button" id="start-demo">Попробовать прототип <svg class="external-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></button>
-      <div class="journey" aria-label="Этапы сценария">
-        <div class="journey-step current" data-phase="bank"><span>01</span><div><strong>Изучаете операции</strong><p>Меняете период, открываете графики</p></div></div>
-        <div class="journey-step" data-phase="chat"><span>02</span><div><strong>Задаёте свой вопрос</strong><p>Тая уточняет детали и правила расчёта</p></div></div>
-        <div class="journey-step" data-phase="result"><span>03</span><div><strong>Получаете свою аналитику</strong><p>Проверяете операции и смотрите дальше</p></div></div>
-      </div>
-      <aside class="context-note" aria-live="polite"><span class="note-index">Сейчас в прототипе</span><p id="stage-description">Откройте период или переключите вид диаграммы. После нескольких действий Тая предложит помощь.</p></aside>
-      <p class="disclosure">Концепт, а не действующая функция Т-Банка. Данные вымышлены, диалоги подготовлены заранее. Прототип не подключается к банковским счетам.</p>
-    </section>
-    <section class="demo-column" aria-label="Интерактивный прототип">
-      <div class="phone-tools"><span><i></i> Можно нажимать</span><button id="reset-demo" aria-label="Начать прототип заново">Начать заново</button></div>
-      <div id="phone-wrap" class="phone-wrap">
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Тая — персональная аналитика</title><link rel="icon" href="./assets/icons/taya.svg"><link rel="stylesheet" href="./styles.css?v=3"></head><body>
+<main>
+<section id="landing" class="landing" aria-labelledby="page-title">
+<div class="landing-brand"><img src="./assets/icons/taya.svg" alt="" width="40" height="40"><span>Тая</span></div>
+<h1 id="page-title">Аналитика под ваш вопрос</h1>
+<div class="project-description"><section><h2>Задача</h2><p>Общая сумма не всегда объясняет, что происходит с деньгами. Крупная покупка меняет привычную статистику, возвраты друзей выглядят как доход, а разные выплаты зарплаты сложно сопоставить.</p></section>
+<section><h2>Решение</h2><p>Тая замечает, что человек разбирается в операциях, и предлагает помощь. Пользователь описывает задачу, Тая уточняет детали и собирает персональную аналитику. Каждый расчёт можно проверить по исходным операциям.</p></section></div>
+<button id="start-demo" class="view-prototype">Посмотреть прототип</button>
+</section>
+<section id="prototype" class="prototype-view" aria-label="Прототип Таи" hidden>
+<div class="prototype-controls"><button id="close-prototype">Вернуться к описанию</button><button id="reset-demo">Начать заново</button></div>
+<div class="prototype-stage"><div id="phone-wrap" class="phone-wrap">
         <div class="phone" id="phone">
           <div class="screen">
-            <div class="status-bar" aria-hidden="true"><b>9:41</b><span class="dynamic-island"></span><span class="status-icons">▮▮▮ <svg viewBox="0 0 20 16"><path d="M1 5a14 14 0 0 1 18 0M4 8a9 9 0 0 1 12 0M7 11a4 4 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><circle cx="10" cy="14" r="1.1" fill="currentColor"/></svg><span class="battery"></span></span></div>
+            <div class="status-bar" aria-hidden="true"><b>9:41</b><span class="dynamic-island"></span><span class="status-icons"><img src="./assets/icons/signal.svg" alt=""><img src="./assets/icons/battery.svg" alt=""></span></div>
             <div id="app" class="app"></div>
             <div class="home-indicator" aria-hidden="true"></div>
             <div id="phone-toast" class="phone-toast" role="status"></div>
           </div>
         </div>
       </div>
-      <div class="scenario-picker" aria-labelledby="scenario-heading">
+</div><div class="scenario-picker" aria-labelledby="scenario-heading">
         <div class="picker-heading"><h2 id="scenario-heading">Какую историю пройдём?</h2><span>Выбор для демонстрации</span></div>
         <div class="scenario-options">
-          <button class="scenario-card active" data-scenario="friends" aria-pressed="true"><span class="scenario-number">01</span><strong>Общий счёт</strong><span>Вернули друзья — это доход?</span><svg class="scenario-arrow external-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></button>
-          <button class="scenario-card" data-scenario="computer" aria-pressed="false"><span class="scenario-number">02</span><strong>Крупная покупка</strong><span>Сколько трачу без компьютера?</span><svg class="scenario-arrow external-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></button>
-          <button class="scenario-card" data-scenario="salary" aria-pressed="false"><span class="scenario-number">03</span><strong>Зарплата</strong><span>Все ли выплаты пришли?</span><svg class="scenario-arrow external-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></button>
+          <button class="scenario-card active" data-scenario="friends" aria-pressed="true"><strong>Общий счёт</strong><span>Вернули друзья — это доход?</span></button>
+          <button class="scenario-card" data-scenario="computer" aria-pressed="false"><strong>Крупная покупка</strong><span>Сколько трачу без компьютера?</span></button>
+          <button class="scenario-card" data-scenario="salary" aria-pressed="false"><strong>Зарплата</strong><span>Все ли выплаты пришли?</span></button>
         </div>
         <p>Этот выбор — часть презентации. Внутри приложения человек сам описывает задачу.</p>
       </div>
-    </section>
-  </main>
-  <footer class="site-footer"><span>Концепт Екатерины</span><a href="https://www.figma.com/design/Ldhr6lBVxPfwkPwzl5S1Oz?node-id=18-53" target="_blank" rel="noopener">Посмотреть весь сценарий в Figma</a><span>2026</span></footer>
-  <section id="print-report" class="print-report" aria-hidden="true"></section>
-  <script type="module" src="./app.mjs?v=2"></script>
-</body>
-</html>
+</section>
+</main><section id="print-report" class="print-report" aria-hidden="true"></section><script type="module" src="./app.mjs?v=3"></script></body></html>
