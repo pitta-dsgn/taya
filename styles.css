@@ -25,7 +25,7 @@
 .bonus-marks img{width:22px;height:22px;display:block}.prototype-stage{position:relative}.chat-scroll .answer{overflow-wrap:break-word}.chat-scroll .salary-table{font-size:16px}.russian-keyboard .icon{background:currentColor}.app[data-mode="intro"] .bank-filters,.app[data-mode="typing"] .composer{pointer-events:none}.screen .icon-bank-card{width:42px;height:28px}
 .account-tile{height:142px;padding:18px}.account-art{height:36px;display:flex;align-items:center;flex-shrink:0}.account-tile .account-art img{max-height:none;max-width:none;object-fit:contain;object-position:center;margin:0}.account-art img[src$="shared-account.svg"]{width:40px;height:40px}.account-art img[src$="bank-card.svg"]{width:42px;height:28px}.savings-icon>img{display:block;width:38px;height:38px}
 /* Source of truth: Figma 402 × 874 screen, original 450 × 920 bezel. */
-@font-face{font-family:'Taya SF Pro';src:local('SF Pro');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Taya SF Pro';src:local('SF Pro'),url('./assets/fonts/sf-pro.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
 :root{--sf:'Taya SF Pro','SF Pro',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif}
 .screen,.screen button,.screen input,.screen textarea{font-family:var(--sf);font-synthesis:none;letter-spacing:normal}
 .prototype-view{max-width:1240px;padding:24px 40px 40px}
@@ -92,3 +92,7 @@
 @keyframes sheet-up{from{transform:translateY(100%)}to{transform:translateY(0)}}
 @media(max-width:819px){.prototype-view{padding:16px}.prototype-layout{grid-template-columns:1fr;gap:20px;max-width:540px}.prototype-stage{justify-content:center}.demo-guide{padding:0 8px}.stage-heading{min-height:0;margin-bottom:16px}.stage-heading h2{font-size:24px;line-height:30px}.guide-section h2,.picker-heading h2{font-size:24px;line-height:30px}.guide-section p,.picker-heading p{font-size:14px;line-height:21px}.guide-primary{margin-top:16px}.guide-point{display:none}.scenario-options{grid-template-columns:1fr}.scenario-card{padding:16px 40px 16px 16px}.scenario-card strong{font-size:15px}.scenario-card>span{font-size:13px}.prototype-view[data-stage='choose'] .demo-guide,.prototype-view[data-stage='idle'] .demo-guide,.prototype-view[data-stage='await-taya'] .demo-guide{grid-row:1}.scenario-options{gap:8px}.picker-heading{margin-bottom:16px}.completion{margin-top:16px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+:root{font-family:var(--sf);font-optical-sizing:auto}.screen{font-optical-sizing:auto}
+
+.screen .op-title,.screen .legend-amount,.screen .metric-top{font-weight:510}.screen .skills,.screen .chat-title,.screen .bank-header strong,.screen .account-tile strong{font-weight:590}.chart-svg .axis-label{font-size:12px}.screen .answer>.amount-large{font-weight:700}
