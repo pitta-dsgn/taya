@@ -1,6 +1,6 @@
-import {refunds,salary,categories,money,typo,escape,refundReport,expenseReport,salaryReport,detectScenario} from './model.mjs';
-import {addMessage,updateLastAnswer,cleanRequest,INTRO_DURATION,INTRO_STEPS} from './conversation.mjs';
-import {Playback} from './playback.mjs';
+import {refunds,salary,categories,money,typo,escape,refundReport,expenseReport,salaryReport,detectScenario} from './model.mjs?v=11';
+import {addMessage,updateLastAnswer,cleanRequest,INTRO_DURATION,INTRO_STEPS} from './conversation.mjs?v=11';
+import {Playback} from './playback.mjs?v=11';
 const $=s=>document.querySelector(s),app=$('#app');
 const icon=n=>`<span class="icon icon-${n}" style="--icon-url:url('./assets/icons/${n}.svg')" aria-hidden="true"></span>`;
 const btn=(action,label,cls='quick-reply')=>`<button class="${cls}" data-action="${action}">${label}</button>`;
