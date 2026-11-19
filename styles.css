@@ -24,3 +24,71 @@
 @media(prefers-reduced-motion:reduce){.chat-scroll{scroll-behavior:auto}.demo-touch,.chat-turn.new-turn,.russian-keyboard,.bank-chart.ring-animate circle.segment{animation:none!important}}
 .bonus-marks img{width:22px;height:22px;display:block}.prototype-stage{position:relative}.chat-scroll .answer{overflow-wrap:break-word}.chat-scroll .salary-table{font-size:16px}.russian-keyboard .icon{background:currentColor}.app[data-mode="intro"] .bank-filters,.app[data-mode="typing"] .composer{pointer-events:none}.screen .icon-bank-card{width:42px;height:28px}
 .account-tile{height:142px;padding:18px}.account-art{height:36px;display:flex;align-items:center;flex-shrink:0}.account-tile .account-art img{max-height:none;max-width:none;object-fit:contain;object-position:center;margin:0}.account-art img[src$="shared-account.svg"]{width:40px;height:40px}.account-art img[src$="bank-card.svg"]{width:42px;height:28px}.savings-icon>img{display:block;width:38px;height:38px}
+/* Source of truth: Figma 402 × 874 screen, original 450 × 920 bezel. */
+@font-face{font-family:'Taya SF Pro';src:local('SF Pro');font-weight:100 900;font-style:normal;font-display:swap}
+:root{--sf:'Taya SF Pro','SF Pro',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif}
+.screen,.screen button,.screen input,.screen textarea{font-family:var(--sf);font-synthesis:none;letter-spacing:normal}
+.prototype-view{max-width:1240px;padding:24px 40px 40px}
+.stage-heading{max-width:760px;margin:0 auto 24px;min-height:88px}
+.stage-heading h2{font-size:28px;line-height:36px;letter-spacing:-.5px}
+.prototype-layout{display:grid;grid-template-columns:minmax(0,1fr) 328px;gap:56px;align-items:start;max-width:940px;margin:auto}
+.prototype-stage{justify-content:flex-end}
+.demo-guide{width:100%;align-self:center;padding:16px 0}
+.guide-section,.scenario-picker{animation:guide-in .24s ease-out both}
+.guide-eyebrow{display:block;color:#7a8088;font-size:13px;line-height:20px;margin-bottom:12px}
+.guide-section h2,.picker-heading h2{font-size:28px;line-height:34px;letter-spacing:-.5px;font-weight:600;color:#171717}
+.guide-section p,.picker-heading p{font-size:15px;line-height:23px;color:#737880;margin-top:12px}
+.guide-primary{display:flex;gap:16px;justify-content:space-between;align-items:center;width:100%;background:#ffdd2d;border-radius:16px;padding:16px 20px;color:#171717;font-size:15px;line-height:22px;text-align:left;margin-top:24px}
+.guide-primary:hover{background:#f5d325}.guide-primary span{font-size:24px}
+.guide-duration{display:block;color:#959ba2;font-size:13px;line-height:20px;margin-top:12px}
+.guide-secondary{display:block;text-align:left;background:none;color:#347ce5;font-size:15px;line-height:22px;padding:10px 0;margin-top:12px}
+.guide-secondary:disabled{color:#9299a2}.interactive-label{color:#2c76dc;display:flex;gap:8px;align-items:center}
+.interactive-label:before{content:'';width:8px;height:8px;background:#428bf9;border-radius:50%}
+.guide-point{font-size:40px;color:#428bf9;margin-top:20px;animation:point-left 1.5s ease-in-out 3}
+.scenario-picker{max-width:none;margin:0}.picker-heading{display:block;margin-bottom:24px}.picker-heading p{font-weight:400}
+.scenario-options{display:grid;grid-template-columns:1fr;gap:12px}
+.scenario-card{position:relative;padding:20px 42px 20px 20px;min-height:0;background:#f5f6f7;border-radius:16px;gap:8px;transition:background .18s,box-shadow .18s}
+.scenario-card strong{font-size:16px;line-height:22px;font-weight:600;color:#25282e}
+.scenario-card>span{font-size:14px;line-height:20px;color:#747a84}.scenario-card>i{position:absolute;right:16px;top:18px;font-size:22px;font-style:normal;color:#9299a2}
+.scenario-card:hover{background:#ecf2fc;box-shadow:inset 0 0 0 1px #c1d8fc}.scenario-card.active{background:#ecf2fc;box-shadow:inset 0 0 0 1px #428bf9}
+.playback-panel{width:100%;max-width:none;margin:0}.playback-top{font-size:13px;margin-bottom:16px}.playback-top button{color:#347ce5;font-size:15px}.playback-track{height:4px}.playback-labels{margin-top:12px;font-size:12px}.completion{margin-top:24px}
+.phone-wrap{width:calc(450px * var(--scale));height:calc(920px * var(--scale))}
+.phone{position:absolute;left:calc(24px * var(--scale));top:calc(23px * var(--scale));width:402px;height:874px;padding:0;background:#000;border-radius:44px;box-shadow:none;transform:scale(var(--scale))}
+.phone:before,.phone:after{display:none}
+.figma-bezel{position:absolute;left:-24px;top:-23px;width:450px;height:920px;z-index:90;pointer-events:none}
+.screen{width:402px;height:874px;border-radius:44px;overflow:hidden;background:#000}
+.status-bar{height:64px;padding:0 47px 0 38px;font-size:17px;line-height:24px}.status-bar b{font-weight:590}
+.dynamic-island{display:none}.app{height:810px}.home-indicator{bottom:23px;height:5px;width:132px}
+.chat-header{height:58px;padding:0 17px 10px;gap:17px}
+.chat-header .back-button{width:47px;height:47px;min-width:47px;min-height:47px;padding:10px;background:#1c1c1e}
+.chat-title{gap:9px;font-size:18.224px;line-height:24px;font-weight:590;white-space:nowrap}
+.taya-avatar{width:38.592px;height:38.592px}.chat-tools{gap:0;padding:0 1px;background:#1c1c1e;height:47px}
+.chat-tools .icon-button{width:47px;height:47px}.chat-tools .icon{width:25.728px;height:25.728px}
+.chat-scroll{padding:0 24px 24px}.chat-turn .answer{font-size:17px;line-height:20px}.answer>h1{font-size:30px;line-height:36px;letter-spacing:-.5px}
+.answer>h2{font-size:20px;line-height:24px;letter-spacing:normal}.answer>.caption{font-size:15px;line-height:18px}
+.user-message p{font-size:17.545px;line-height:20px;padding:10px 12px;border-radius:16px}
+.quick-replies{padding:16px 24px;gap:8px;max-height:172px;background:#000}
+.quick-reply{font-size:15px;line-height:20px;min-height:44px;padding:12px 16px;border-radius:24px}
+.composer-area{padding:0 24px 52px}.composer{min-height:84px;padding:12px 16px 8px;border-radius:28px}
+.composer textarea{font-size:17.545px;line-height:22px}.composer-bottom{margin-top:5px}.composer-left{gap:8px}.skills{font-size:13.417px;font-weight:590;line-height:18px}
+.composer .icon-button{min-height:28px;min-width:24px;width:24px;height:28px;padding:0}.send-button:disabled{visibility:hidden}
+.operation-card{background:none;border-radius:0;padding:0;margin-top:8px}.operation-card .operation{min-height:64px}.operation-card .op-money{min-width:100px}
+.selection-row .selection-description,.selection-row .selection-money{font-size:17px;line-height:22px}.selection-money{color:#fff}
+.selection-row{min-height:76px}.selection-list{border-radius:20px}.selection-row .check-circle{margin-right:8px}
+.chat-scroll .answer .donut{height:224px;margin-top:20px}.legend{margin-top:16px}.legend-row{min-height:40px;font-size:15px;line-height:20px}
+.metric{padding:12px 0;margin-top:12px}.metric p{line-height:20px}.answer .chart-svg{margin:24px 0 20px}.chart-svg .bar{filter:none}.donut circle.segment{filter:none}
+.answer-actions{height:42px;margin-top:8px}.answer-actions .icon{width:20px;height:20px}.answer-actions>div{gap:0}.answer-actions button{min-width:32px;padding:6px}
+.bank-filters{padding:8px 24px 12px}.bank-scroll,.overview-scroll{padding-left:24px;padding-right:24px}.bank-chart .donut{height:200px}
+.bank-nav{height:88px;padding:8px 0 30px;background:linear-gradient(115deg,#242127,#1a2223)}.bank-nav button{font-size:9px;gap:4px}
+.bank-header{height:58px;padding:0 20px}.balance{font-size:32px;line-height:40px}.chart-controls{margin-bottom:20px}
+.bank-chart .chart-svg .bar{fill:#ffb03b}.bank-chart.ring-animate circle.segment{animation-duration:.36s}.bank-chart.ring-animate .chart-svg .bar{animation-duration:.32s}
+.taya-offer{animation-duration:.28s}.taya-offer strong{font-size:16px}.taya-offer p{font-size:13px;line-height:18px}
+.prototype-view[data-stage='await-taya'] .offer-link{background:#263e58;border-radius:10px;padding:8px 12px;margin:2px 0 0 -4px;box-shadow:0 0 0 1px #64a8ff66;animation:focus-offer 1.6s ease-in-out 3}
+.russian-keyboard{animation-duration:.28s}.composer-playing .composer{box-shadow:none}.chat-turn.new-turn{animation-duration:.24s}.app-overlay .app-sheet{animation:sheet-up .3s cubic-bezier(.2,.7,.2,1)}
+.app-sheet .primary-app-button{background:var(--blue);color:#fff;padding:14px 18px}.app-sheet>.sheet-close{background:#2d2d30}
+@keyframes guide-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes point-left{0%,100%{transform:translateX(0)}50%{transform:translateX(-8px)}}
+@keyframes focus-offer{50%{box-shadow:0 0 0 3px #64a8ff50}}
+@keyframes sheet-up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@media(max-width:819px){.prototype-view{padding:16px}.prototype-layout{grid-template-columns:1fr;gap:20px;max-width:540px}.prototype-stage{justify-content:center}.demo-guide{padding:0 8px}.stage-heading{min-height:0;margin-bottom:16px}.stage-heading h2{font-size:24px;line-height:30px}.guide-section h2,.picker-heading h2{font-size:24px;line-height:30px}.guide-section p,.picker-heading p{font-size:14px;line-height:21px}.guide-primary{margin-top:16px}.guide-point{display:none}.scenario-options{grid-template-columns:1fr}.scenario-card{padding:16px 40px 16px 16px}.scenario-card strong{font-size:15px}.scenario-card>span{font-size:13px}.prototype-view[data-stage='choose'] .demo-guide,.prototype-view[data-stage='idle'] .demo-guide,.prototype-view[data-stage='await-taya'] .demo-guide{grid-row:1}.scenario-options{gap:8px}.picker-heading{margin-bottom:16px}.completion{margin-top:16px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

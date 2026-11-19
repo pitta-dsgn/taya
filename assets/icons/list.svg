@@ -1,0 +1,27 @@
+<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="26" height="26" fill="#F5F5F5"/>
+<g id="UI kit / Taya">
+<rect width="2200" height="2640" transform="translate(-388.4 -1110.72)" fill="#EFF1F4"/>
+<g id="Taya / Chat header / Source">
+<g id="container">
+<g id="Container">
+<g id="right">
+<path d="M-62.1758 12.8643C-62.1758 -0.160805 -51.6169 -10.7197 -38.5918 -10.7197H12.8642C25.8893 -10.7197 36.4482 -0.160805 36.4482 12.8643C36.4482 25.8894 25.8893 36.4483 12.8642 36.4483H-38.5918C-51.6169 36.4483 -62.1758 25.8894 -62.1758 12.8643Z" fill="#1C1C1E"/>
+<g id="icon">
+<g id="tui-ic-medium-pragmatic / list">
+<mask id="mask0_0_1" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="26">
+<g id="Mask">
+<path id="Mask_2" fill-rule="evenodd" clip-rule="evenodd" d="M2.14404 6.96738C2.14404 6.0793 2.86397 5.35938 3.75204 5.35938H23.584V5.89538C23.584 6.78345 22.8641 7.50338 21.976 7.50338H2.14404V6.96738ZM2.14404 13.3994C2.14404 12.5113 2.86397 11.7914 3.75204 11.7914H23.584V12.3274C23.584 13.2154 22.8641 13.9354 21.976 13.9354H2.14404V13.3994ZM3.75204 18.2234C2.86397 18.2234 2.14404 18.9433 2.14404 19.8314V20.3674H21.976C22.8641 20.3674 23.584 19.6474 23.584 18.7594V18.2234H3.75204Z" fill="black"/>
+</g>
+</mask>
+<g mask="url(#mask0_0_1)">
+<rect id="Color" width="25.728" height="25.728" fill="white"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
