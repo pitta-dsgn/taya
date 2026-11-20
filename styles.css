@@ -129,8 +129,8 @@
 .taya-reveal{position:relative;height:140px;flex-shrink:0;margin:0 0 8px;isolation:isolate}
 .taya-reveal.is-revealing{overflow:visible}
 .taya-light{position:absolute;pointer-events:none;left:50%;top:3px;width:100%;height:2px;border-radius:100%;background:linear-gradient(90deg,transparent,#41b9ff 18%,#d9ffff 50%,#41b9ff 82%,transparent);box-shadow:0 0 8px 2px #31dbff88,0 0 28px 5px #288eff55;opacity:0;z-index:3}
-.taya-avatar{position:absolute;left:0;top:9px;width:60px;height:60px;z-index:2;transform-origin:center}
-.taya-avatar svg{display:block;width:100%;height:100%;overflow:visible}
+.taya-reveal .taya-avatar{position:absolute;left:0;top:9px;width:60px;height:60px;z-index:2;transform-origin:center}
+.taya-reveal .taya-avatar svg{display:block;width:100%;height:100%;overflow:visible}
 .taya-wave path{transform-box:fill-box;transform-origin:center}
 .taya-speech{position:absolute;left:78px;right:0;top:8px;min-height:66px;padding:12px 32px 12px 16px;background:#1c1c1e;border-radius:22px 22px 22px 3px;color:#fff;font-size:18px;font-weight:590;line-height:23px;transform-origin:left center}
 .taya-speech:before{content:'';position:absolute;width:17px;height:17px;left:-10px;bottom:0;background:#1c1c1e;clip-path:polygon(100% 0,100% 100%,0 100%)}
@@ -152,3 +152,5 @@
 .bonus-marks>img{display:block;width:128px;height:49px;object-fit:contain}.home-service>span.bonus-marks{color:inherit}.cashback-card strong{flex-shrink:0}
 .screen .donut{height:220px}.screen .donut circle.segment{stroke-width:25;transform-origin:177px 108px;filter:drop-shadow(0 2px 2px #0008) drop-shadow(0 0 10px color-mix(in srgb,var(--chart-color) 20%,transparent))}.screen .donut text{font-size:13px;fill:#9299a2}
 .home-scroll{padding-left:24px;padding-right:24px}
+
+.taya-flash{position:absolute;inset:-18px;z-index:-1;border-radius:50%;background:radial-gradient(circle,#d5ffff99 0%,#50dcff55 32%,#258dff22 52%,transparent 72%);opacity:0;pointer-events:none}
