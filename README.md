@@ -10,6 +10,10 @@ A static, build-free presentation of personalized financial analytics. The inter
 
 Scenarios cover salary reconciliation, a large purchase excluded from analytics, and confirmed friend refunds linked to a shared bill. Selection changes recalculate totals. Original transaction history remains unchanged.
 
+## Scenario B — Figma / Итог
+
+The large-purchase scenario starts with a general request, then lets the visitor confirm DNS and airfare exclusions. The November preview expands into a read-only period with category filters and a full transaction list; excluded operations remain visible. Six-month comparison supports month selection, detailed bar/donut views, a swipeable donut carousel, July travel-agency exclusion/restoration, and free-text amount thresholds. All sums are calculated from the shared ledger in `personal-model.mjs`.
+
 ## Development
 
 Node.js 20+, no dependencies:
@@ -31,4 +35,4 @@ SVG icons and illustrations live in `assets/icons/`. Navigation, chart controls 
 
 ## Validation
 
-`npm test` covers financial reconciliation, routing, escaping user input, immutable chat history, automatic draft punctuation, playback pause/resume and cancellation. Browser verification covers the full introduction, typing, persistent history, minimization/restoration and the scenario completion flow.
+`npm test` covers financial reconciliation, routing, escaping user input, immutable chat history, automatic draft punctuation, playback pause/resume and cancellation. Scenario B also has application-level routing checks, exclusion/restoration arithmetic, category filtering and threshold tests. The current B update has not been visually checked in a browser.
