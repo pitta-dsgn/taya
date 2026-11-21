@@ -47,6 +47,9 @@ test('the application completes new A and B flows and returns analytics to chat'
   await click('s-continue');assert.equal(state.step,'salary-dates');
   const previousAnimationFrame=globalThis.requestAnimationFrame;globalThis.requestAnimationFrame=()=>1;
   await click('s-calendar');globalThis.requestAnimationFrame=previousAnimationFrame;assert.equal(state.overlay,'salary-calendar');assert.match(node('#app').innerHTML,/август/);
+  assert.equal(state.payroll.from,null);assert.equal(state.payroll.to,null);
+  await click('s-day',{date:'2025-10-19'});assert.equal(state.payroll.to,null);
+  await click('s-day',{date:'2025-10-25'});
   await click('s-dates-done');assert.equal(state.step,'salary-holiday');
   await click('s-holiday-yes');assert.equal(state.step,'salary-bonus');
   await click('s-bonus-Премия');assert.equal(state.step,'salary-summary');
