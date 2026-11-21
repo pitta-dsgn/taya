@@ -1,0 +1,78 @@
+/* Type values transcribed from the final Figma frames (402 × 874).
+   SF Pro uses variable weights: Regular 400, Medium 510, Semibold 590, Bold 700. */
+.screen,.screen button,.screen input,.screen textarea{font-family:'Taya SF Pro',sans-serif;font-optical-sizing:none;font-synthesis:none;font-weight:400;letter-spacing:0}
+.screen strong,.screen b{font-weight:590}
+.screen .status-bar{font-size:17px;line-height:22px}
+.screen .chat-title{font-size:18.224px;line-height:normal;font-weight:590;letter-spacing:-.43952px}
+.screen .composer textarea{font-size:17.545189px;line-height:normal;font-weight:400;letter-spacing:-.423149px}
+.screen .skills{font-size:13.416909px;line-height:normal;font-weight:590;letter-spacing:-.082566px}
+.screen .chat-turn .answer{font-size:17px;line-height:22px;font-weight:400}
+.screen .user-message p{font-size:17.545189px;line-height:20px;font-weight:400;letter-spacing:-.423149px}
+.screen .quick-reply{font-size:15px;line-height:20px;font-weight:400;letter-spacing:-.24px}
+#app[data-scenario='salary'] .answer,#app[data-scenario='salary'] .user-message p{font-size:17px;line-height:23.8px;font-weight:400;letter-spacing:0}
+#app[data-scenario='friends'] .answer,#app[data-scenario='friends'] .user-message p{font-size:17px;line-height:24px;font-weight:400;letter-spacing:0}
+.screen .answer[data-step='computer-compare']{line-height:23.8px}
+.screen .bank-header strong{font-size:17px;line-height:23.8px;font-weight:590}
+.screen .filter{font-size:14px;line-height:20px;font-weight:510}
+.screen .balance{font-size:32px;line-height:40px;font-weight:700;letter-spacing:0}
+.screen .balance-caption{font-size:15px;line-height:21px;font-weight:400}
+.screen .segmented button{font-size:14px;line-height:18px;font-weight:510}
+.screen .month-header h3{font-size:20px;line-height:26px;font-weight:700}
+.screen .month-header>span{font-size:17px;line-height:22px;font-weight:400}
+.screen .op-title{font-size:17px;line-height:22px;font-weight:510}
+.screen .op-money{font-size:17px;line-height:22px;font-weight:400}
+.screen .op-category,.screen .op-account{font-size:13px;line-height:17px;font-weight:400}
+.screen .bank-nav button{font-size:11px;line-height:14px;font-weight:400}
+.screen .nav-badge{font-size:12px;line-height:14px;font-weight:400}
+.screen .notifications{font-size:13px;line-height:18.2px;font-weight:400}
+.screen .profile-avatar,.screen .search-placeholder{font-size:17px;font-weight:400}
+.screen .search-placeholder{line-height:23.8px}
+.screen .account-tile strong,.screen .main-accounts strong,.screen .home-service strong,.screen .overview-tile strong{font-size:17px;line-height:23.8px;font-weight:590}
+.screen .account-tile>span,.screen .overview-tile>span{font-size:17px;line-height:23.8px;font-weight:400}
+.screen .home-service>span{font-size:15px;line-height:21px;font-weight:400}
+.screen .overview-analytics strong{font-size:17px;line-height:22.44px;font-weight:590}
+.screen .overview-analytics>span{font-size:17px;line-height:22.44px;font-weight:400}
+.screen .personal-text-link{font-size:15px;line-height:22px;font-weight:510}
+.screen .personal-date{font-size:13px;line-height:17px;font-weight:400}
+.screen .personal-merchant{font-size:11px;line-height:14px;font-weight:700}
+.screen .personal-operation-info>span,.screen .personal-selection .personal-operation-info>span{font-size:17px;line-height:22px;font-weight:510}
+.screen .personal-operation-money,.screen .personal-selection .personal-operation-money{font-size:17px;line-height:22px;font-weight:400}
+.screen .personal-operation small{font-size:13px;line-height:17px;font-weight:400}
+.screen .personal-preview>header>strong,.screen .personal-sheet-total{font-size:32px;line-height:40px;font-weight:700;letter-spacing:0}
+.screen .personal-scope{font-size:17px;line-height:22px;font-weight:400}
+.screen .personal-note,.screen .personal-excluded-note{font-size:13px;line-height:18px;font-weight:400}
+.screen .personal-preview.is-comparison>header>strong,.screen .personal-sheet.is-comparison .personal-sheet-total{line-height:44.8px}
+.screen .personal-preview.is-comparison .personal-scope,.screen .personal-sheet.is-comparison .personal-scope{line-height:23.8px}
+.screen .personal-preview.is-comparison .personal-note,.screen .personal-sheet.is-comparison .personal-note{line-height:18.2px}
+.screen .personal-donut text{font-size:13px;line-height:16px;font-weight:400}
+.screen .personal-chip,.screen .personal-preview .personal-chip.category-cafe{font-size:12px;line-height:18px;font-weight:590}
+.screen .personal-sheet .personal-chip{font-size:13px;line-height:18px;font-weight:590}
+.screen .personal-bar{font-size:13px;line-height:normal;font-weight:400}
+.screen .personal-period-stat{font-size:15px;line-height:21px;font-weight:400}
+.screen .personal-period-stat strong{font-size:17px;line-height:23.8px;font-weight:590}
+.screen .personal-sheet-header h2{font-size:20px;line-height:26px;font-weight:590}
+.screen .personal-sheet.is-comparison .personal-sheet-header h2{line-height:28px}
+.screen .personal-sheet-header>button{font-size:17px;line-height:22px;font-weight:400}
+.screen .personal-month-list h3{font-size:20px;line-height:26px;font-weight:700}
+.screen .personal-month-list>header>span{font-size:16px;line-height:22px;font-weight:400}
+.screen .salary-payment .personal-date{font-size:13px;line-height:18.2px}
+.screen .salary-operation strong,.screen .salary-select-payment .salary-operation strong{font-size:16px;line-height:22px;font-weight:510}
+.screen .salary-operation small{font-size:13px;line-height:17px;font-weight:400}
+.screen .salary-payment-amount{font-size:16px;line-height:22px;font-weight:400}
+.screen .salary-factors button{font-size:16px;line-height:20px;font-weight:400}
+#app[data-scenario='salary'] .answer>p.salary-muted{font-size:13px;line-height:18.2px;font-weight:400}
+.screen .salary-report>.salary-muted{font-size:15px;line-height:20.25px;font-weight:400}
+.screen .salary-total{font-size:32px;line-height:43.2px;font-weight:700}
+.screen .salary-report-row{font-size:14px;line-height:18.9px;font-weight:400}
+.screen .salary-report-row>strong{font-size:17px;line-height:22.95px;font-weight:590}
+.screen .salary-report-heading>strong{font-size:15px;line-height:20.25px;font-weight:590}
+.screen .salary-report-heading>strong:last-child{font-size:24px;line-height:32.4px;font-weight:590}
+.screen .salary-sub{font-size:13px;line-height:17.55px;font-weight:400}
+.screen .salary-letter{font-size:17px;line-height:23.8px;font-weight:400}
+.screen .native-calendar header h2{font-size:17px;line-height:20px;font-weight:590}
+.screen .native-calendar header button{font-size:17px;line-height:20px;font-weight:400}
+.screen .calendar-range span{font-size:13px;line-height:16px;font-weight:400}
+.screen .calendar-range strong{font-size:17px;line-height:20px;font-weight:400}
+.screen .calendar-weekdays{font-size:12px;line-height:14px;font-weight:400}
+.screen .month-pill{font-size:17px;line-height:22px;font-weight:590}
+.screen .calendar-day{font-size:17px;line-height:20px;font-weight:400}
