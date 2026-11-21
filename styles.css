@@ -196,3 +196,6 @@
 .overview-analytics>img{width:99px;height:69px;right:0;bottom:0;transform:none;object-fit:contain}
 
 .overview-analytics>strong,.overview-analytics>span{position:relative;z-index:1}.overview-analytics>img{z-index:0}
+
+/* Exact 402 × 62 status bar exported from the final Figma frame. */
+.screen>.status-bar{height:62px;padding:0;display:block;flex-shrink:0;line-height:0;pointer-events:none;user-select:none}.screen>.status-bar>img{display:block;width:402px;height:62px;max-width:100%;object-fit:contain}.screen>.app{height:calc(100% - 62px)}
