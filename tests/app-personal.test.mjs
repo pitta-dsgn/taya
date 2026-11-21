@@ -20,6 +20,7 @@ test('the application completes all three final flows and returns analytics to c
     querySelectorAll(){return [];}
     closest(){return node('screen');}
     addEventListener(name,fn){if(this.key==='#app')listeners[name]=fn;}
+    getBoundingClientRect(){return {left:0,top:0,width:402,height:874};}
     setAttribute(){} scrollTo(){} focus(){} remove(){} append(){}
     animate(){return {pause(){},cancel(){},finished:Promise.resolve()};}
   }
@@ -27,7 +28,7 @@ test('the application completes all three final flows and returns analytics to c
   const context={...shared,...sharedModel,...motion,...payroll,...model,...conversation,...personal,...personalModel,mountMotion(){},syncCompletion(){},pressFeedback(){},Playback,document:{querySelector:node,querySelectorAll:()=>[],addEventListener(){},createElement:()=>new Element('created')},window:{innerWidth:1440,innerHeight:1000,scrollTo(){},addEventListener(){}},matchMedia:()=>({matches:true}),requestAnimationFrame:()=>1,cancelAnimationFrame(){},setTimeout:()=>1,clearTimeout(){},console};
   vm.createContext(context);
   const source=(await readFile(new URL('../app.mjs',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'');
-  vm.runInContext(source+'\nglobalThis.demo={state:()=>state,send,render,answer,finish,completedScenarios};',context);
+  vm.runInContext(source+'\nglobalThis.demo={state:()=>state,send,render,answer,finish,completedScenarios,playReimbursement};',context);
   const demo=context.demo,state=demo.state();state.page='chat';state.mode='chat';
   node('#message').value='Хочу убрать крупные покупки из статистики расходов';demo.send();
   assert.equal(state.step,'computer-select');assert.match(node('#app').innerHTML,/Почему эти покупки/);
@@ -59,7 +60,10 @@ test('the application completes all three final flows and returns analytics to c
   await click('s-holiday-yes');assert.equal(state.step,'salary-bonus');
   await click('s-bonus-Премия');assert.equal(state.step,'salary-summary');
   assert.deepEqual(payroll.salarySummary(state.payroll),{regular:61818,holiday:19113,bonus:15000,salary:80931,total:95931});
-  node('#message').value='6700 за возврат билета в командировку 30.09';demo.send();
+  assert.equal(node('#reimbursement-guide').hidden,false);
+  const normalTimeout=context.setTimeout;context.setTimeout=fn=>{fn();return 1;};
+  const previousTurns=state.messages.length;await demo.playReimbursement();context.setTimeout=normalTimeout;
+  assert.equal(state.messages.length,previousTurns+2);assert.equal(state.messages.at(-2).body,'6700 за возврат билета в командировку 30.09');assert.equal(node('#reimbursement-guide').hidden,true);
   assert.equal(state.step,'salary-draft');assert.match(node('#app').innerHTML,/6 700 ₽/);
   assert.match(node('#app').innerHTML,/30\sсентября/);
   demo.finish();assert.equal(demo.completedScenarios.has('salary'),true);state.mode='chat';

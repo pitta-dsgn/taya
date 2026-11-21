@@ -183,3 +183,5 @@
 #chat-guide #finish-task.is-ready{background:#ffdd2d;color:#202020;box-shadow:0 3px 12px #ffdd2d35}
 .completion-confetti{position:fixed;inset:0;z-index:90;overflow:hidden;pointer-events:none}.completion-confetti>i{position:absolute;display:block;pointer-events:none;will-change:transform,opacity}
 @media(prefers-reduced-motion:reduce){.completion-confetti{display:none}#chat-guide #finish-task{transition:none}}
+
+#reimbursement-guide .guide-primary{margin:0;padding:14px 18px;font-size:15px;line-height:22px;border-radius:14px;display:flex;align-items:center;gap:16px;text-align:left}
