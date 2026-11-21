@@ -1,5 +1,5 @@
-import {money,typo,escape} from './model.mjs?v=55';
-import {personalMonths,personalCategoryOrder,personalColors,personalOperations,personalCandidates,personalReport,personalComparison,isPersonalExcluded,setPersonalThreshold,parsePersonalThreshold} from './personal-model.mjs?v=55';
+import {money,typo,escape} from './model.mjs?v=56';
+import {personalMonths,personalCategoryOrder,personalColors,personalOperations,personalCandidates,personalReport,personalComparison,isPersonalExcluded,setPersonalThreshold,parsePersonalThreshold} from './personal-model.mjs?v=56';
 const text=s=>escape(typo(String(s)));
 const button=(action,label,cls='',attrs='')=>`<button type="button" class="${cls}" data-action="${action}" ${attrs}>${label}</button>`;
 const svgIcon=body=>`<svg viewBox="-12 -12 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
@@ -31,7 +31,7 @@ export function personalDonut(items){
     labels.push(`<text data-ring-label="${i}" x="${label[0]}" y="${label[1]+4}" text-anchor="middle">${Math.round(share*100)}%</text>`);
     cumulative+=share;
   });
-  return `<svg class="personal-donut" viewBox="0 0 354 220" role="img" aria-label="${text(data.map(x=>`${x[0]}: ${money(x[1])}`).join('; '))}"><defs>${defs.join('')}</defs>${arcs.join('')}${caps.join('')}${labels.join('')}</svg>`;
+  return `<svg data-chart-motion="ring" class="personal-donut" viewBox="0 0 354 220" role="img" aria-label="${text(data.map(x=>`${x[0]}: ${money(x[1])}`).join('; '))}"><defs>${defs.join('')}</defs>${arcs.join('')}${caps.join('')}${labels.join('')}</svg>`;
 }
 export function personalLegend(items,category=null,interactive=false){return `<div class="personal-legend">${items.map(([name,value,color])=>{
   const kind={'Кафе и рестораны':'cafe','Продукты':'products','Остальное':'other','Транспорт':'transport'}[name]||'other';

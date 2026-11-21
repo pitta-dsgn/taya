@@ -11,7 +11,7 @@ test('ring builds clockwise from the largest sector with overlapping staggered s
 });
 test('both ring renderers expose matching sectors, cap groups and percent labels',()=>{
  for(const render of [personalDonut,sharedDonut])for(const items of [[['Транспорт',20,'#428bf9'],['Техника',80,'#fa6b78']],[['Транспорт',100,'#428bf9']]]){
- const svg=render(items);for(const attribute of ['data-ring-sector','data-ring-cap','data-ring-label'])assert.equal((svg.match(new RegExp(attribute+'=','g'))||[]).length,items.length);
+ const svg=render(items);assert.match(svg,/<svg data-chart-motion="ring"/);for(const attribute of ['data-ring-sector','data-ring-cap','data-ring-label'])assert.equal((svg.match(new RegExp(attribute+'=','g'))||[]).length,items.length);
  assert.equal((svg.match(/data-ring-share=/g)||[]).length,items.length);
  }
 });
