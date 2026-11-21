@@ -1,14 +1,15 @@
-import {scenarioHint,mountScenarioHints} from './scenario-hints.mjs?v=52';
-import {syncCompletion} from './completion.mjs?v=52';
-import {initialShared} from './shared-model.mjs?v=52';
-import {sharedAnswer,sharedSheet,sharedAction,mountShared,sharedDonut,sharedLegend} from './shared.mjs?v=52';
-import {mountMotion,pressFeedback} from './motion.mjs?v=52';
-import {initialSalary,salaryAnswer,salarySheet,salaryAction,salaryTextRequest} from './salary.mjs?v=52';
-import {initialPersonal} from './personal-model.mjs?v=52';
-import {personalAnswer,personalSheet,personalAction,personalTextRequest,mountPersonal,personalDonut} from './personal.mjs?v=52';
-import {refunds,salary,categories,money,typo,escape,refundReport,expenseReport,salaryReport,detectScenario} from './model.mjs?v=52';
-import {addMessage,updateLastAnswer,cleanRequest,INTRO_DURATION,INTRO_STEPS} from './conversation.mjs?v=52';
-import {Playback} from './playback.mjs?v=52';
+import {RING_REVEAL_DURATION} from './ring-motion.mjs?v=53';
+import {scenarioHint,mountScenarioHints} from './scenario-hints.mjs?v=53';
+import {syncCompletion} from './completion.mjs?v=53';
+import {initialShared} from './shared-model.mjs?v=53';
+import {sharedAnswer,sharedSheet,sharedAction,mountShared,sharedDonut,sharedLegend} from './shared.mjs?v=53';
+import {mountMotion,pressFeedback} from './motion.mjs?v=53';
+import {initialSalary,salaryAnswer,salarySheet,salaryAction,salaryTextRequest} from './salary.mjs?v=53';
+import {initialPersonal} from './personal-model.mjs?v=53';
+import {personalAnswer,personalSheet,personalAction,personalTextRequest,mountPersonal,personalDonut} from './personal.mjs?v=53';
+import {refunds,salary,categories,money,typo,escape,refundReport,expenseReport,salaryReport,detectScenario} from './model.mjs?v=53';
+import {addMessage,updateLastAnswer,cleanRequest,INTRO_DURATION,INTRO_STEPS} from './conversation.mjs?v=53';
+import {Playback} from './playback.mjs?v=53';
 const $=s=>document.querySelector(s),app=$('#app');
 const icon=n=>`<span class="icon icon-${n}" style="--icon-url:url('./assets/icons/${n}.svg')" aria-hidden="true"></span>`;
 const btn=(action,label,cls='quick-reply',attrs='')=>`<button class="${cls}" data-action="${action}" ${attrs}>${label}</button>`;
@@ -108,7 +109,7 @@ function setupReveal(){revealAnimations.forEach(a=>a.cancel());revealAnimations=
 }
 function paintReveal(time){for(const a of revealAnimations)a.currentTime=reducedMotion()?REVEAL_DURATION:Math.max(0,time);const field=app.querySelector('.taya-typed');if(field)field.textContent=OFFER_TEXT.slice(0,reducedMotion()?OFFER_TEXT.length:Math.max(0,Math.ceil((time-2030)/800*OFFER_TEXT.length)));}
 function finishReveal(){paintReveal(REVEAL_DURATION);state.revealing=false;state.mode='await-taya';app.inert=false;app.dataset.mode=state.mode;app.querySelector('.taya-reveal')?.classList.remove('is-revealing');updateStage();}
-function startReveal(fromIntro=false){playback?.destroy();const ringDuration=reducedMotion()?0:1000;let mounted=false;state.page='bank';state.offer=false;state.revealing=true;state.chartAnimate=false;state.mode='intro';render();const mount=()=>{if(mounted)return;mounted=true;state.offer=true;render();setupReveal();};playback=new Playback({duration:ringDuration+REVEAL_DURATION,steps:[],onFrame:(progress,time)=>{if(time>=ringDuration){mount();paintReveal(time-ringDuration);}const total=(fromIntro?3800:0)+ringDuration+REVEAL_DURATION,elapsed=(fromIntro?3800:0)+time;$('#playback-progress').style.transform=`scaleX(${elapsed/total})`;$('#playback-time').textContent=`${(elapsed/1000).toFixed(1)} / ${(total/1000).toFixed(1)} с`;$('#playback-panel [role="progressbar"]').setAttribute('aria-valuenow',String(Math.round(elapsed/total*100)));},onEnd:()=>{mount();finishReveal();}});playback.play();updateStage();}
+function startReveal(fromIntro=false){playback?.destroy();const ringDuration=reducedMotion()?0:RING_REVEAL_DURATION+80;let mounted=false;state.page='bank';state.offer=false;state.revealing=true;state.chartAnimate=false;state.mode='intro';render();const mount=()=>{if(mounted)return;mounted=true;state.offer=true;render();setupReveal();};playback=new Playback({duration:ringDuration+REVEAL_DURATION,steps:[],onFrame:(progress,time)=>{if(time>=ringDuration){mount();paintReveal(time-ringDuration);}const total=(fromIntro?3800:0)+ringDuration+REVEAL_DURATION,elapsed=(fromIntro?3800:0)+time;$('#playback-progress').style.transform=`scaleX(${elapsed/total})`;$('#playback-time').textContent=`${(elapsed/1000).toFixed(1)} / ${(total/1000).toFixed(1)} с`;$('#playback-panel [role="progressbar"]').setAttribute('aria-valuenow',String(Math.round(elapsed/total*100)));},onEnd:()=>{mount();finishReveal();}});playback.play();updateStage();}
 function startIntro(){reset();state.mode='intro';state.page='home';$('#landing').hidden=true;$('#prototype').hidden=false;window.scrollTo({top:0,behavior:'instant'});render();playback=new Playback({duration:3800,steps:INTRO_STEPS.filter(step=>step.page!=='bank'),onStep:step=>{if(step.page){state.page=step.page;render();}if(step.action==='tap-home')showTouch('.operations-entry');if(step.action==='tap-expenses')showTouch('[data-action="open-expenses"]');},onFrame:(_,time)=>{state.clock=time;$('#playback-progress').style.transform=`scaleX(${time/INTRO_DURATION})`;$('#playback-time').textContent=`${(time/1000).toFixed(1)} / ${(INTRO_DURATION/1000).toFixed(1)} с`;$('#playback-panel [role="progressbar"]').setAttribute('aria-valuenow',String(Math.round(time/INTRO_DURATION*100)));},onEnd:()=>startReveal(true)});playback.play();updateStage();}
 async function dismissTaya(){if(state.dismissing)return;const current=state;state.dismissing=true;app.inert=true;const source=app.querySelector('.taya-reveal .taya-avatar'),target=app.querySelector('.bank-nav button:nth-child(4) img'),offer=app.querySelector('.taya-reveal');
  try{if(source&&target&&!reducedMotion()){const root=app.getBoundingClientRect(),scale=root.width/app.offsetWidth,s=source.getBoundingClientRect(),t=target.getBoundingClientRect();const sx=(s.left+s.width/2-root.left)/scale-30,sy=(s.top+s.height/2-root.top)/scale-30,tx=(t.left+t.width/2-root.left)/scale-30,ty=(t.top+t.height/2-root.top)/scale-30;

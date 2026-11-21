@@ -1,5 +1,5 @@
-import {money,typo,escape} from './model.mjs?v=52';
-import {personalMonths,personalCategoryOrder,personalColors,personalOperations,personalCandidates,personalReport,personalComparison,isPersonalExcluded,setPersonalThreshold,parsePersonalThreshold} from './personal-model.mjs?v=52';
+import {money,typo,escape} from './model.mjs?v=53';
+import {personalMonths,personalCategoryOrder,personalColors,personalOperations,personalCandidates,personalReport,personalComparison,isPersonalExcluded,setPersonalThreshold,parsePersonalThreshold} from './personal-model.mjs?v=53';
 const text=s=>escape(typo(String(s)));
 const button=(action,label,cls='',attrs='')=>`<button type="button" class="${cls}" data-action="${action}" ${attrs}>${label}</button>`;
 const svgIcon=body=>`<svg viewBox="-12 -12 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
@@ -22,12 +22,13 @@ export function personalDonut(items){
     const share=value/total,end=-Math.PI/2-cumulative*Math.PI*2,start=end-share*Math.PI*2,p=point(start,68.88),q=point(end,68.88),label=point(data.length===1?Math.PI/2:end-share*Math.PI,104);
     defs.push(`<filter id="${id}glow${i}" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="8"/></filter>`);
     const path=data.length===1?`<circle cx="177" cy="110" r="68.88" fill="none" stroke="${color}" stroke-width="26.24"/>`:`<path d="M${p.join(' ')} A68.88 68.88 0 ${share>.5?1:0} 1 ${q.join(' ')}" fill="none" stroke="${color}" stroke-width="26.24" stroke-linecap="round"/>`;
-    arcs.push(`<g opacity=".16" filter="url(#${id}glow${i})">${path}</g>${path}`);
+    arcs.push(`<g data-ring-sector="${i}" data-ring-share="${share}"><g opacity=".16" filter="url(#${id}glow${i})">${path}</g>${path}</g>`);
     const glyph=personalIcon(name).replace('<svg ','<svg x="-8" y="-8" width="16" height="16" ');
+    caps.push(`<g data-ring-cap="${i}">`);
     if(data.length>1){defs.push(`<clipPath id="${id}clip${i}"><rect x="0" y="-22" width="28" height="44"/></clipPath><filter id="${id}shadow${i}" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="3"/></filter>`);
       caps.push(`<g transform="translate(${q[0]} ${q[1]}) rotate(${end*180/Math.PI+90})" clip-path="url(#${id}clip${i})"><circle cx="3" cy="0" r="13" fill="black" opacity=".5" filter="url(#${id}shadow${i})"/></g><circle cx="${q[0]}" cy="${q[1]}" r="13.12" fill="${color}"/>`);}
-    caps.push(`<g color="white" transform="translate(${q.join(' ')})">${glyph}</g>`);
-    labels.push(`<text x="${label[0]}" y="${label[1]+4}" text-anchor="middle">${Math.round(share*100)}%</text>`);
+    caps.push(`<g color="white" transform="translate(${q.join(' ')})">${glyph}</g></g>`);
+    labels.push(`<text data-ring-label="${i}" x="${label[0]}" y="${label[1]+4}" text-anchor="middle">${Math.round(share*100)}%</text>`);
     cumulative+=share;
   });
   return `<svg class="personal-donut" viewBox="0 0 354 220" role="img" aria-label="${text(data.map(x=>`${x[0]}: ${money(x[1])}`).join('; '))}"><defs>${defs.join('')}</defs>${arcs.join('')}${caps.join('')}${labels.join('')}</svg>`;
