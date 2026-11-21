@@ -1,4 +1,4 @@
-import {ringTimeline,RING_REVEAL_DURATION} from './ring-motion.mjs?v=53';
+import {ringTimeline,RING_REVEAL_DURATION} from './ring-motion.mjs?v=54';
 // Shared motion for native-style charts and staged assistant replies.
 const ease='cubic-bezier(.22,.75,.2,1)';
 let chartKeys=new Set(),observer=null,replyAnimations=[],replyTimer=null,lastOverlay=null;
@@ -11,16 +11,16 @@ function animateRing(svg,delay=0){
   track.animate([{opacity:0},{opacity:.55,offset:.12},{opacity:.55,offset:.7},{opacity:0}],{duration:RING_REVEAL_DURATION,delay,fill:'both'}).finished.then(()=>track.remove()).catch(()=>track.remove());
   for(const timing of ringTimeline(sectors.map(n=>Number(n.dataset.ringShare)))){
     const sector=sectors[timing.index],at=delay+timing.delay;
-    sector.animate([{opacity:0},{opacity:1}],{duration:90,delay:at,easing:'ease-out',fill:'both'});
+    sector.animate([{opacity:0},{opacity:1}],{duration:timing.share<.15?160:90,delay:at,easing:'ease-out',fill:'both'});
     sector.querySelectorAll('path,circle').forEach(path=>{
       const length=path.getTotalLength();path.style.strokeDasharray=`${length} ${length}`;
       if(path.tagName.toLowerCase()==='circle')path.setAttribute('transform','rotate(-90 177 110)');
-      const growth=path.animate([{strokeDashoffset:String(length)},{strokeDashoffset:'0'}],{duration:timing.duration,delay:at,easing:'cubic-bezier(.28,.1,.2,1)',fill:'both'});
+      const growth=path.animate([{strokeDashoffset:String(length)},{strokeDashoffset:'0'}],{duration:timing.duration,delay:at,easing:timing.share<.15?'cubic-bezier(.2,.35,.3,1)':'cubic-bezier(.28,.1,.2,1)',fill:'both'});
       growth.finished.then(()=>{growth.cancel();path.style.removeProperty('stroke-dasharray');if(path.tagName.toLowerCase()==='circle')path.removeAttribute('transform');}).catch(()=>{});
     });
     const cap=svg.querySelector(`[data-ring-cap="${timing.index}"]`),label=svg.querySelector(`[data-ring-label="${timing.index}"]`);
-    cap?.animate([{opacity:0},{opacity:1}],{duration:160,delay:at+timing.duration-160,easing:'ease-out',fill:'both'});
-    label?.animate([{opacity:0},{opacity:1}],{duration:180,delay:at+timing.duration-180,easing:'ease-out',fill:'both'});
+    cap?.animate([{opacity:0},{opacity:1}],{duration:200,delay:at+Math.max(0,timing.duration-200),easing:'ease-out',fill:'both'});
+    label?.animate([{opacity:0},{opacity:1}],{duration:180,delay:at+Math.max(0,timing.duration-180),easing:'ease-out',fill:'both'});
   }
 }
 function animateBars(container,delay=0){
