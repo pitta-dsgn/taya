@@ -1,8 +1,8 @@
 export const refunds=[{id:'anna',name:'Анна',amount:3000,time:'15:24'},{id:'danya',name:'Даня',amount:3000,time:'16:08'},{id:'maria',name:'Мария',amount:1500,time:'22:17'}];
 export const salary=[['s1','14 сентября',32000,0],['s2','28 сентября',42500,0],['s3','14 октября',32000,1],['s4','18 октября',15500,1],['s5','28 октября',57300,1],['s6','14 ноября',28000,2],['s7','28 ноября',53200,2]].map(([id,date,amount,month])=>({id,date,amount,month}));
-export const categories=[['Техника',200000,'#ffb03b'],['Продукты',18000,'#ffb03b'],['Кафе и рестораны',20000,'#00d941'],['Транспорт',6000,'#428bf9'],['Остальное',9000,'#4bc3d9']];
+export const categories=[['Техника',200000,'#fa6b78'],['Продукты',18000,'#ffb03b'],['Кафе и рестораны',20000,'#00d941'],['Транспорт',6000,'#428bf9'],['Остальное',9000,'#4bc3d9']];
 export const money=n=>new Intl.NumberFormat('ru-RU').format(n)+'\u00a0₽';
-export const typo=s=>s.replace(/\bа /g,'а\u00a0').replace(/(^|\s)([вксуояи]|на|за|по|из|не|со|об|от|до|для|без|как|что|чтобы) /giu,'$1$2\u00a0');
+export const typo=s=>String(s).replace(/(^|[\s])((?:(?:а|в|к|с|у|о|я|и|или|но|на|за|по|из|не|со|об|от|до|для|без|как|что|чтобы)[ \u00a0]+)+)/giu,(_,lead,words)=>lead+words.replace(/ /g,'\u00a0'));
 export const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function refundReport(ids){const selected=refunds.filter(x=>ids.has(x.id));const returned=selected.reduce((a,x)=>a+x.amount,0);return {selected,returned,own:8000-returned,total:253000-returned,categories:categories.map(([name,n,c])=>[name,name==='Кафе и рестораны'?n-returned:n,c])};}
 export function expenseReport(exclude=true){return {total:exclude?53000:253000,difference:exclude?3000:203000,categories:categories.filter(x=>!exclude||x[0]!=='Техника')};}

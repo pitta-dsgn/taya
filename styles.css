@@ -161,6 +161,19 @@
 .app>.quick-replies{flex-flow:row wrap;flex:0 0 auto;max-height:none;overflow:visible;gap:8px;align-content:flex-start;align-items:flex-start;justify-content:flex-start;padding:8px 24px 16px}
 .app>.quick-replies:empty{display:none}
 .app>.quick-replies>.quick-reply{flex:0 0 auto;min-height:44px;margin:0}
-.app>.quick-replies:has(>[data-action="p-compare"]),.app>.quick-replies:has(>[data-action="p-result"]){justify-content:center}
+.app>.quick-replies:has(>[data-action="p-compare"]),.app>.quick-replies:has(>[data-action="p-result"]){justify-content:flex-start}
 .app>.composer-area,.app.personal-chat>.composer-area{flex:0 0 auto;padding-bottom:52px}
 .app>.chat-scroll{flex:1 1 0%;min-height:0;overflow-y:auto;overscroll-behavior-y:contain}
+
+/* Current final Figma screens. */
+.playback-top[hidden],.playback-labels[hidden]{display:none}
+.account-tile{gap:4px;padding:18px;height:142px}.account-tile strong,.account-tile>span:not(.account-art){line-height:24px}.account-tile .account-art{height:36px;margin-bottom:14px}
+.home-service{overflow:hidden}.mini-category-icons{height:74px;width:97px;right:20px;top:3px;bottom:auto;overflow:hidden}.mini-category-icons img{width:97px;height:74px;display:block}.operations-entry>span{max-width:230px}
+.composer-playing .composer:after{content:none}.composer-playing textarea{caret-color:transparent}
+.app>.quick-replies{justify-content:flex-start!important}
+.scenario-card.is-completed{background:#f4f5f6;border-color:#e7e9eb}.scenario-card.is-completed strong,.scenario-card.is-completed>span{opacity:.5}.scenario-card.is-completed>i{color:#19a65b;opacity:1}
+#finish-task.is-ready{background:#ffdd2d;color:#202020;box-shadow:0 3px 12px #ffdd2d35}
+.bank-scroll>.bank-chart{margin:0;height:220px}.bank-scroll>.chart-controls{margin:0 0 12px;height:36px}.bank-scroll>.shared-legend{margin:0 0 16px;min-height:112px}.bank-scroll>.balance{line-height:40px}.bank-scroll>.balance-caption{line-height:21px;margin:0}
+
+.bank-scroll{padding-left:24px;padding-right:24px}.bank-scroll>.bank-chart{margin-top:7px;margin-bottom:-12px}.bank-scroll>.shared-legend .shared-chip-transport,.bank-scroll>.shared-legend .shared-chip-other{width:155px}.bank-scroll>.shared-legend .shared-chip-products{width:157px}.bank-scroll>.shared-legend .shared-chip-cafe{width:173px}.bank-scroll>.shared-legend .shared-chip-tech{width:154px}
+.personal-chat .answer-actions,.shared-chat .answer-actions{display:flex}

@@ -1,6 +1,6 @@
 // Shared motion for native-style charts and staged assistant replies.
 const ease='cubic-bezier(.22,.75,.2,1)';
-let chartKeys=new Set(),observer=null,replyAnimations=[],replyTimer=null;
+let chartKeys=new Set(),observer=null,replyAnimations=[],replyTimer=null,lastOverlay=null;
 const reduced=()=>globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 function animateRing(svg,delay=0){
   const ns='http://www.w3.org/2000/svg',id='reveal-'+Math.random().toString(36).slice(2);
@@ -19,6 +19,7 @@ function animateBars(container,delay=0){
 }
 export function mountMotion(root,state,freshReply=false,pageChanged=false){
   observer?.disconnect();observer=null;
+  const opening=state.overlay&&state.overlay!==lastOverlay;lastOverlay=state.overlay;root.querySelector('.date-overlay')?.classList.toggle('is-opening',!!opening);
   if(reduced())return;
   const keyBase=[state.page,state.overlay||'',state.step].join('/'),nextKeys=new Set();
   const charts=[...root.querySelectorAll('svg.personal-donut,svg.donut,.personal-bars,svg.chart-svg')];
@@ -41,4 +42,4 @@ export function mountMotion(root,state,freshReply=false,pageChanged=false){
     replyTimer=setTimeout(()=>thinking.remove(),360);
   }
 }
-export function pressFeedback(el){if(!el||reduced())return;el.animate([{transform:'scale(1)'},{transform:'scale(.965)',offset:.28},{transform:'scale(1)'}],{duration:360,easing:ease});}
+export function pressFeedback(el){if(!el||reduced()||el.classList?.contains('calendar-day'))return;el.animate([{transform:'scale(1)'},{transform:'scale(.965)',offset:.28},{transform:'scale(1)'}],{duration:360,easing:ease});}

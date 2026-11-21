@@ -27,7 +27,7 @@ test('the application completes all three final flows and returns analytics to c
   const context={...shared,...sharedModel,...motion,...payroll,...model,...conversation,...personal,...personalModel,mountMotion(){},pressFeedback(){},Playback,document:{querySelector:node,querySelectorAll:()=>[],addEventListener(){},createElement:()=>new Element('created')},window:{innerWidth:1440,innerHeight:1000,scrollTo(){},addEventListener(){}},matchMedia:()=>({matches:true}),requestAnimationFrame:()=>1,cancelAnimationFrame(){},setTimeout:()=>1,clearTimeout(){},console};
   vm.createContext(context);
   const source=(await readFile(new URL('../app.mjs',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'');
-  vm.runInContext(source+'\nglobalThis.demo={state:()=>state,send,render,answer};',context);
+  vm.runInContext(source+'\nglobalThis.demo={state:()=>state,send,render,answer,finish,completedScenarios};',context);
   const demo=context.demo,state=demo.state();state.page='chat';state.mode='chat';
   node('#message').value='Хочу убрать крупные покупки из статистики расходов';demo.send();
   assert.equal(state.step,'computer-select');assert.match(node('#app').innerHTML,/Почему эти покупки/);
@@ -42,10 +42,13 @@ test('the application completes all three final flows and returns analytics to c
   await click('close-sheet');assert.equal(state.personal.month,1);assert.equal(state.step,'computer-compare');
   const before=state.messages.length;await click('p-july');assert.equal(state.messages.length,before);assert.equal(state.personal.julyExcluded,false);
   assert.equal(personalModel.personalComparison(state.personal).total,372000);
+  demo.finish();assert.equal(state.mode,'choose');assert.equal(demo.completedScenarios.has('computer'),true);state.mode='chat';
   node('#message').value='Помоги проверить, всё ли мне выплатили за октябрь';demo.send();
   assert.equal(state.step,'salary-intro');assert.match(node('#app').innerHTML,/Заработная плата/);
   await click('s-usual');assert.equal(state.step,'salary-regular');
   await click('s-confirm');assert.equal(state.step,'salary-factors');
+  assert.equal(state.payroll.factors.size,0);assert.equal(demo.answer().quick.length,0);
+  for(const value of ['Отпуск','Премию','Возмещение расходов'])await click('s-factor',{value});
   await click('s-continue');assert.equal(state.step,'salary-dates');
   const previousAnimationFrame=globalThis.requestAnimationFrame;globalThis.requestAnimationFrame=()=>1;
   await click('s-calendar');globalThis.requestAnimationFrame=previousAnimationFrame;assert.equal(state.overlay,'salary-calendar');assert.match(node('#app').innerHTML,/август/);
@@ -59,6 +62,7 @@ test('the application completes all three final flows and returns analytics to c
   node('#message').value='6700 за возврат билета в командировку 30.09';demo.send();
   assert.equal(state.step,'salary-draft');assert.match(node('#app').innerHTML,/6 700 ₽/);
   assert.match(node('#app').innerHTML,/30\sсентября/);
+  demo.finish();assert.equal(demo.completedScenarios.has('salary'),true);state.mode='chat';
   await click('s-summary');await click('s-unsure');assert.equal(state.step,'salary-uncertain');
   state.scenario='friends';state.shared=sharedModel.initialShared();state.step='welcome';
   node('#message').value='В ноябре оплатила ресторан за друзей, потом они вернули свою часть. Хочу увидеть только свои расходы';demo.send();
@@ -72,6 +76,7 @@ test('the application completes all three final flows and returns analytics to c
   for(const id of ['maxim','olya','sasha'])await click('f-toggle',{kind:'kart',id});
   await click('f-kart-apply');assert.equal(state.step,'friends-updated');assert.match(node('#app').innerHTML,/238 000 ₽/);
   await click('f-detail-open',{snapshot:'shared-0'});assert.match(node('#app').innerHTML,/personal-sheet-total">247 000 ₽/);
+  await click('close-sheet');demo.finish();assert.equal(state.mode,'choose');assert.equal(demo.completedScenarios.size,3);
 
 
 });

@@ -1,5 +1,5 @@
-import {money,typo,escape} from './model.mjs';
-import {personalMonths,personalCategoryOrder,personalColors,personalOperations,personalCandidates,personalReport,personalComparison,isPersonalExcluded,setPersonalThreshold,parsePersonalThreshold} from './personal-model.mjs';
+import {money,typo,escape} from './model.mjs?v=46';
+import {personalMonths,personalCategoryOrder,personalColors,personalOperations,personalCandidates,personalReport,personalComparison,isPersonalExcluded,setPersonalThreshold,parsePersonalThreshold} from './personal-model.mjs?v=46';
 const text=s=>escape(typo(String(s)));
 const button=(action,label,cls='',attrs='')=>`<button type="button" class="${cls}" data-action="${action}" ${attrs}>${label}</button>`;
 const svgIcon=body=>`<svg viewBox="-12 -12 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
@@ -51,7 +51,7 @@ export function personalAnswer(state){
   if(!['computer-select','computer-result','computer-compare'].includes(state.step))return null;
   const p=state.personal;
   if(state.step==='computer-select')return {body:`<p>${p.threshold===null?'Нашла 2 разовые крупные покупки за ноябрь. Какие убрать из расчёта?':`Нашла покупки дороже ${money(p.threshold)}. Какие убрать из расчёта?`}</p>${selection(state)}${button('p-reason','Почему эти покупки?','personal-text-link',`aria-expanded="${p.reason}"`)}${p.reason?'<p class="personal-explanation">Эти покупки заметно дороже остальных в своих категориях. За последние 3 месяца похожих платежей не было.</p>':''}<p>Если вы имели в виду все покупки дороже определённой суммы, укажите её.</p>`,quick:[['p-result','Показать статистику']]};
-  if(state.step==='computer-result')return {body:`<p>Готово. Вот расходы за ноябрь ${p.excluded.size?'без выбранных покупок':'со всеми покупками'}.</p>${novemberPreview(state)}<p class="personal-compare-offer">Сравнить расходы за последние полгода?</p>`,quick:[['p-compare','Сравнить']]};
+  if(state.step==='computer-result')return {body:`<p>Готово. Вот расходы за ноябрь ${p.excluded.size?'без выбранных покупок':'со всеми покупками'}.</p>${novemberPreview(state)}<p class="personal-compare-offer">Сравнить расходы за последние полгода?</p>`,quick:[['p-compare','Сравнить за полгода']]};
   const c=personalComparison(p),stable=c.maximum-c.minimum<=10000;
   const agency=personalOperations.find(x=>x.id==='agency'),nov=personalOperations.filter(x=>x.month===5&&p.excluded.has(x.id));
   return {body:`${comparisonPreview(state)}<p>${stable?'Без крупных разовых покупок расходы почти не меняются: '+(c.minimum/1000).toLocaleString('ru-RU')+'–'+(c.maximum/1000).toLocaleString('ru-RU')+' тыс. ₽ в месяц.':'Сейчас в сравнении учтены выбранные вами покупки. Средние расходы — '+money(c.average)+' в месяц.'}</p><p>${p.julyExcluded?'В июле нашла ещё одну крупную разовую покупку и исключила её из сравнения.':'Покупка в турагентстве возвращена в расчёт июля.'}</p>${purchaseCard(agency)}${button('p-july',p.julyExcluded?'Вернуть в расчёт':'Исключить из расчёта','personal-text-link')}<p>${nov.length?'В ноябре сохранила выбранные вами исключения.':'В ноябре учитываю все покупки.'}</p>${nov.map(op=>purchaseCard(op)).join('')}<p>В остальные месяцы крупных разовых покупок не нашла.</p>`,quick:[]};
