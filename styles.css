@@ -177,3 +177,9 @@
 
 .bank-scroll{padding-left:24px;padding-right:24px}.bank-scroll>.bank-chart{margin-top:7px;margin-bottom:-12px}.bank-scroll>.shared-legend .shared-chip-transport,.bank-scroll>.shared-legend .shared-chip-other{width:155px}.bank-scroll>.shared-legend .shared-chip-products{width:157px}.bank-scroll>.shared-legend .shared-chip-cafe{width:173px}.bank-scroll>.shared-legend .shared-chip-tech{width:154px}
 .personal-chat .answer-actions,.shared-chat .answer-actions{display:flex}
+
+/* Completion cue stays outside the phone and never intercepts a click. */
+#chat-guide #finish-task{padding:10px 22px;min-height:40px;border-radius:12px;transition:background-color .2s,color .2s,box-shadow .2s}
+#chat-guide #finish-task.is-ready{background:#ffdd2d;color:#202020;box-shadow:0 3px 12px #ffdd2d35}
+.completion-confetti{position:fixed;inset:0;z-index:90;overflow:hidden;pointer-events:none}.completion-confetti>i{position:absolute;display:block;pointer-events:none;will-change:transform,opacity}
+@media(prefers-reduced-motion:reduce){.completion-confetti{display:none}#chat-guide #finish-task{transition:none}}

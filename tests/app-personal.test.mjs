@@ -24,7 +24,7 @@ test('the application completes all three final flows and returns analytics to c
     animate(){return {pause(){},cancel(){},finished:Promise.resolve()};}
   }
   function node(key){if(!nodes.has(key))nodes.set(key,new Element(key));return nodes.get(key);}
-  const context={...shared,...sharedModel,...motion,...payroll,...model,...conversation,...personal,...personalModel,mountMotion(){},pressFeedback(){},Playback,document:{querySelector:node,querySelectorAll:()=>[],addEventListener(){},createElement:()=>new Element('created')},window:{innerWidth:1440,innerHeight:1000,scrollTo(){},addEventListener(){}},matchMedia:()=>({matches:true}),requestAnimationFrame:()=>1,cancelAnimationFrame(){},setTimeout:()=>1,clearTimeout(){},console};
+  const context={...shared,...sharedModel,...motion,...payroll,...model,...conversation,...personal,...personalModel,mountMotion(){},syncCompletion(){},pressFeedback(){},Playback,document:{querySelector:node,querySelectorAll:()=>[],addEventListener(){},createElement:()=>new Element('created')},window:{innerWidth:1440,innerHeight:1000,scrollTo(){},addEventListener(){}},matchMedia:()=>({matches:true}),requestAnimationFrame:()=>1,cancelAnimationFrame(){},setTimeout:()=>1,clearTimeout(){},console};
   vm.createContext(context);
   const source=(await readFile(new URL('../app.mjs',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'');
   vm.runInContext(source+'\nglobalThis.demo={state:()=>state,send,render,answer,finish,completedScenarios};',context);

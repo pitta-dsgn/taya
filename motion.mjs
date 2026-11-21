@@ -28,6 +28,7 @@ export function mountMotion(root,state,freshReply=false,pageChanged=false){
   chartKeys=nextKeys;
   const reveal=node=>{if(!node.isConnected)return;const delay=Number(node.closest('[data-reply-delay]')?.dataset.replyDelay||0);if(node.matches('.personal-bars,svg.chart-svg'))animateBars(node,delay);else animateRing(node,delay);};
   if(globalThis.IntersectionObserver){observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){reveal(entry.target);observer.unobserve(entry.target);}},{root,threshold:.2});pending.forEach(node=>observer.observe(node));}else pending.forEach(reveal);
+  let replyEnd=0;
   if(freshReply){
     clearTimeout(replyTimer);replyAnimations.forEach(a=>a.cancel());replyAnimations=[];
     const turn=root.querySelector('.chat-turn:last-child');if(!turn)return;
@@ -35,11 +36,14 @@ export function mountMotion(root,state,freshReply=false,pageChanged=false){
     const thinking=document.createElement('span');thinking.className='assistant-thinking';thinking.setAttribute('aria-label','Тая думает');thinking.innerHTML='<i></i><i></i><i></i>';turn.prepend(thinking);
     let delay=360;
     for(const part of parts){part.dataset.replyDelay=String(delay);const duration=part.matches('p')?420:540;
+      replyEnd=Math.max(replyEnd,delay+duration);if(part.querySelector('svg.personal-donut,svg.donut,.personal-bars,svg.chart-svg'))replyEnd=Math.max(replyEnd,delay+1100);
       replyAnimations.push(part.animate([{opacity:0,transform:'translateY(9px)'},{opacity:1,transform:'translateY(0)'}],{duration,delay,easing:ease,fill:'backwards'}));
       delay+=part.matches('p')?Math.min(350,120+part.textContent.length*1.3):210;
     }
     const controls=root.querySelector('.quick-replies');if(controls){controls.inert=true;setTimeout(()=>{controls.inert=false;},Math.min(delay,2200));replyAnimations.push(controls.animate([{opacity:0,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:320,delay:Math.min(delay,2200),easing:ease,fill:'backwards'}));}
+    replyEnd=Math.max(replyEnd,Math.min(delay,2200)+320);
     replyTimer=setTimeout(()=>thinking.remove(),360);
   }
+  return replyEnd;
 }
 export function pressFeedback(el){if(!el||reduced()||el.classList?.contains('calendar-day'))return;el.animate([{transform:'scale(1)'},{transform:'scale(.965)',offset:.28},{transform:'scale(1)'}],{duration:360,easing:ease});}

@@ -1,6 +1,6 @@
-import {money,typo,escape} from './model.mjs?v=46';
-import {personalIcon} from './personal.mjs?v=46';
-import {sharedColors,dinnerTransfers,kartTransfers,dinnerPayment,kartPayment,sharedReport,saveSharedSnapshot,sharedSnapshot,visualSharedShares} from './shared-model.mjs?v=46';
+import {money,typo,escape} from './model.mjs?v=47';
+import {personalIcon} from './personal.mjs?v=47';
+import {sharedColors,dinnerTransfers,kartTransfers,dinnerPayment,kartPayment,sharedReport,saveSharedSnapshot,sharedSnapshot,visualSharedShares} from './shared-model.mjs?v=47';
 const text=s=>escape(typo(String(s))),p=s=>`<p>${text(s)}</p>`;
 const button=(action,html,cls='',attrs='')=>`<button type="button" class="${cls}" data-action="${action}" ${attrs}>${html}</button>`;
 const wheel='<svg viewBox="-12 -12 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle r="8"/><circle r="2"/><path d="M-7-3h14M-2 2l-3 5m7-5 3 5"/></svg>';
