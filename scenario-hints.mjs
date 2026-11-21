@@ -1,6 +1,8 @@
+const kartContext='На картинге вы были с Максимом, Олей и Сашей. Все трое вернули вам свою часть — по 3 000 ₽.';
 // Participant context belongs to the demo, outside the simulated bank chat.
 export function scenarioHint(state){
   if(state.page!=='chat'||state.mode!=='chat')return '';
+  if(state.scenario==='friends'&&state.step==='friends-result'&&!state.shared?.kartHintRevealed)return '';
   if(state.overlay==='salary-calendar')return 'Ваш отпуск — с 19 по 25 октября. Эти даты нужно отметить в календаре.';
   if(state.overlay==='personal-november')return 'Здесь можно посмотреть расходы по категориям. Выбранные покупки исключены только из расчёта.';
   if(state.overlay==='personal-compare')return 'Можно выбрать месяц и посмотреть его операции. В круговом виде месяцы переключаются пролистыванием.';
@@ -8,8 +10,8 @@ export function scenarioHint(state){
   const hints={
     friends:{
       'friends-confirm':'Вы были в ресторане с Аней и Даней. Каждый вернул вам по 3 000 ₽. Перевод Марии — по другому поводу.',
-      'friends-result':'На картинге вы были с Максимом, Олей и Сашей. Все трое вернули вам свою часть — по 3 000 ₽.',
-      'friends-kart':'За картинг вам вернули деньги Максим, Оля и Саша. Все три перевода относятся к этой оплате.',
+      'friends-result':kartContext,
+      'friends-kart':kartContext,
       'friends-updated':'В диаграмме — ваши расходы после возвратов. Её можно развернуть и посмотреть операции.',
       'friends-later':'Сейчас учтены только возвраты за ресторан. Диаграмму можно развернуть и посмотреть операции.'
     },
@@ -35,4 +37,20 @@ export function scenarioHint(state){
     }
   };
   return hints[state.scenario]?.[state.step]||'';
+}
+
+export function revealKartHint(state,feed){
+  if(state.scenario!=='friends'||state.step!=='friends-result'||state.mode!=='chat'||state.page!=='chat'||state.overlay||state.shared.kartHintRevealed)return false;
+  if(!Number.isFinite(feed.clientHeight)||feed.clientHeight<=0||feed.scrollHeight-feed.scrollTop-feed.clientHeight>24)return false;
+  state.shared.kartHintRevealed=true;return true;
+}
+let hintTimer=null;
+export function mountScenarioHints(root,state,replyDuration,update){
+  clearTimeout(hintTimer);
+  if(state.scenario!=='friends'||state.step!=='friends-result'||state.shared.kartHintRevealed)return;
+  const feed=root.querySelector('.chat-scroll');if(!feed)return;
+  let settled=replyDuration===0;
+  const check=()=>{if(settled&&revealKartHint(state,feed))update();};
+  feed.addEventListener('scroll',check,{passive:true});
+  hintTimer=setTimeout(()=>{settled=true;check();},replyDuration+32);
 }

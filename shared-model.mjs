@@ -4,7 +4,7 @@ export const kartTransfers=[{id:'maxim',title:'Максим',amount:3000,day:14,
 export const dinnerPayment={id:'restaurant',title:'Ресторан',amount:-8000,day:22,time:'14:00',category:'Кафе и рестораны',type:'restaurant'};
 export const kartPayment={id:'kart',title:'Картинг',amount:-12000,day:14,time:'19:00',category:'Развлечения',mark:'К',type:'kart'};
 export const sharedPayments=[{id:'market',title:'Маркетплейс',amount:-9000,day:28,category:'Остальное',mark:'…'},{id:'dns',title:'DNS',amount:-200000,day:25,category:'Техника',mark:'DNS'},dinnerPayment,{id:'grocery-a',title:'Пятёрочка',amount:-14800,day:18,category:'Продукты',type:'shop'},kartPayment,{id:'transport',title:'Транспорт',amount:-6000,day:9,category:'Транспорт',mark:'Т'},{id:'grocery-b',title:'Пятёрочка',amount:-3200,day:5,category:'Продукты',type:'shop'}];
-export function initialShared(){return {dinnerSelected:new Set(),kartSelected:new Set(),appliedDinner:new Set(),appliedKart:new Set(),kartStatus:'pending',snapshots:[],currentSnapshot:null,detailSnapshot:null,detailCategory:null};}
+export function initialShared(){return {kartHintRevealed:false,dinnerSelected:new Set(),kartSelected:new Set(),appliedDinner:new Set(),appliedKart:new Set(),kartStatus:'pending',snapshots:[],currentSnapshot:null,detailSnapshot:null,detailCategory:null};}
 export function sharedReport(state,category=null){
  const dinnerIds=new Set(state.dinner||state.appliedDinner),kartIds=new Set(state.kart||state.appliedKart);
  const dinner=dinnerTransfers.filter(x=>dinnerIds.has(x.id)),kart=kartTransfers.filter(x=>kartIds.has(x.id));
