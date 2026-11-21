@@ -189,3 +189,8 @@
 /* Context is plain information, visually separate from actions. */
 .scenario-hint{max-width:280px;padding:0;border:0;background:none;box-shadow:none;cursor:default;text-align:left}.scenario-hint-label{font-size:12px;line-height:18px;color:#9299a2;margin:0 0 8px}.scenario-hint #scenario-hint-text{font-size:15px;line-height:23px;color:#626873;margin:0;font-weight:400}.scenario-hint:not([hidden])+#reimbursement-guide{margin-top:24px}
 @media(max-width:700px){.scenario-hint{max-width:100%}.scenario-hint #scenario-hint-text{font-size:14px;line-height:21px}}
+
+/* Welcome keeps identical geometry before and during scenario entry. */
+.screen .chat-scroll:has(>.chat-turn:only-child>.answer[data-step="welcome"]){padding-top:0}
+.screen .answer[data-step="welcome"]>p{margin:12px 0 0;font-size:17px;line-height:22px;font-weight:400}
+.overview-analytics>img{width:99px;height:69px;right:0;bottom:0;transform:none;object-fit:contain}
