@@ -1,4 +1,4 @@
-import {money,typo,escape} from './model.mjs?v=54';
+import {money,typo,escape} from './model.mjs?v=55';
 const text=s=>escape(typo(s));
 const p=s=>`<p>${text(s)}</p>`;
 const button=(a,s,extra='')=>`<button type="button" data-action="${a}" ${extra}>${text(s)}</button>`;

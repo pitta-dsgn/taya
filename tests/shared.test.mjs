@@ -8,8 +8,10 @@ test('monthly own expenses reconcile confirmed refunds without changing the ledg
  assert.equal(sharedReport(s).total,253000);
  s.appliedDinner=new Set(['anna','danya']);const first=saveSharedSnapshot(s),r=sharedReport(s);
  assert.equal(r.total,247000);assert.equal(r.dinnerOwn,2000);assert.equal(r.returned,6000);
+ assert.equal(r.ledger.filter(x=>x.episode==='картинг').length,0);assert.equal(r.ledger.find(x=>x.id==='kart').amount,-12000);
  assert.equal(r.raw,253000);assert.equal(r.categories.reduce((a,x)=>a+x[1],0),r.total);
  s.appliedKart=new Set(['maxim','olya','sasha']);saveSharedSnapshot(s);const updated=sharedReport(s);
+ assert.equal(updated.ledger.filter(x=>x.episode==='картинг').length,3);assert.equal(sharedReport(sharedSnapshot(s,first.id)).ledger.filter(x=>x.episode==='картинг').length,0);
  assert.equal(updated.total,238000);assert.equal(updated.kartOwn,3000);assert.equal(updated.returned,15000);
  assert.equal(sharedReport(sharedSnapshot(s,first.id)).total,247000);
  assert.equal(updated.ledger.find(x=>x.id==='restaurant').amount,-8000);
@@ -43,7 +45,7 @@ test('detail snapshot and category filter preserve original paid and adjusted re
  state.shared.appliedKart=new Set(['maxim','olya','sasha']);saveSharedSnapshot(state.shared);
  sharedAction('f-detail-open',{dataset:{snapshot:first.id}},state,{render(){}});
  assert.equal(state.overlay,'shared-november');assert.equal(state.shared.detailCategory,null);
- assert.match(sharedSheet(state),/247 000 ₽/);
+ assert.match(sharedSheet(state),/247 000 ₽/);assert.doesNotMatch(sharedSheet(state),/Максим|Оля|Саша/);assert.match(sharedSheet(state),/Картинг/);
  assert.match(sharedSheet(state),/−8 000 ₽/);assert.match(sharedSheet(state),/−2 000 ₽/);
  sharedAction('f-category',{dataset:{value:'Кафе и рестораны'}},state,{render(){}});
  assert.match(sharedSheet(state),/personal-sheet-total">2 000 ₽/);

@@ -1,5 +1,5 @@
-import {money,typo,escape} from './model.mjs?v=54';
-import {personalMonths,personalCategoryOrder,personalColors,personalOperations,personalCandidates,personalReport,personalComparison,isPersonalExcluded,setPersonalThreshold,parsePersonalThreshold} from './personal-model.mjs?v=54';
+import {money,typo,escape} from './model.mjs?v=55';
+import {personalMonths,personalCategoryOrder,personalColors,personalOperations,personalCandidates,personalReport,personalComparison,isPersonalExcluded,setPersonalThreshold,parsePersonalThreshold} from './personal-model.mjs?v=55';
 const text=s=>escape(typo(String(s)));
 const button=(action,label,cls='',attrs='')=>`<button type="button" class="${cls}" data-action="${action}" ${attrs}>${label}</button>`;
 const svgIcon=body=>`<svg viewBox="-12 -12 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;

@@ -1,4 +1,4 @@
-import {ringTimeline,RING_REVEAL_DURATION} from './ring-motion.mjs?v=54';
+import {ringTimeline,RING_REVEAL_DURATION} from './ring-motion.mjs?v=55';
 // Shared motion for native-style charts and staged assistant replies.
 const ease='cubic-bezier(.22,.75,.2,1)';
 let chartKeys=new Set(),observer=null,replyAnimations=[],replyTimer=null,lastOverlay=null;
