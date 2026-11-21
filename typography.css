@@ -53,7 +53,7 @@
 .screen .personal-sheet-header h2{font-size:20px;line-height:26px;font-weight:590}
 .screen .personal-sheet.is-comparison .personal-sheet-header h2{line-height:28px}
 .screen .personal-sheet-header>button{font-size:17px;line-height:22px;font-weight:400}
-.screen .personal-month-list h3{font-size:20px;line-height:26px;font-weight:700}
+.screen .personal-month-list h3{font-size:20px;line-height:26px;font-weight:590}
 .screen .personal-month-list>header>span{font-size:16px;line-height:22px;font-weight:400}
 .screen .salary-payment .personal-date{font-size:13px;line-height:18.2px}
 .screen .salary-operation strong,.screen .salary-select-payment .salary-operation strong{font-size:16px;line-height:22px;font-weight:510}
@@ -76,3 +76,14 @@
 .screen .calendar-weekdays{font-size:12px;line-height:14px;font-weight:400}
 .screen .month-pill{font-size:17px;line-height:22px;font-weight:590}
 .screen .calendar-day{font-size:17px;line-height:20px;font-weight:400}
+
+/* Remaining B-specific roles: override paragraph defaults, not only their parent. */
+.screen .personal-chat .answer>p.personal-explanation{font-size:13px;line-height:18px;font-weight:400;letter-spacing:0}
+.screen .personal-chat .answer>p.personal-note{font-size:13px;line-height:18px;font-weight:400;letter-spacing:0}
+.screen .answer[data-step="computer-compare"]>p.personal-note{line-height:18.2px}
+.screen .personal-text-link[data-action="p-july"]{font-size:15px;line-height:21px;font-weight:400;letter-spacing:0}
+.screen .answer[data-step="computer-compare"] .personal-date,.screen .personal-sheet.is-comparison .personal-date{font-size:13px;line-height:18.2px;font-weight:400}
+.screen .personal-sheet:not(.is-comparison) .personal-date{font-size:13px;line-height:18px;font-weight:400}
+.screen .personal-sheet.is-comparison .personal-month-list h3{font-size:20px;line-height:28px;font-weight:590}
+.screen .personal-sheet.is-comparison .personal-month-list>header>span{font-size:16px;line-height:22.4px;font-weight:400}
+.screen .personal-sheet.is-comparison .personal-donut text{font-size:13px;line-height:18.2px;font-weight:400}
