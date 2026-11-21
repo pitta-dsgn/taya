@@ -6,6 +6,7 @@ import * as model from '../model.mjs';
 import * as conversation from '../conversation.mjs';
 import * as personal from '../personal.mjs';
 import * as personalModel from '../personal-model.mjs';
+import * as motion from '../motion.mjs';
 import * as payroll from '../salary.mjs';
 import {Playback} from '../playback.mjs';
 
@@ -21,7 +22,7 @@ test('the application completes new A and B flows and returns analytics to chat'
     animate(){return {pause(){},cancel(){},finished:Promise.resolve()};}
   }
   function node(key){if(!nodes.has(key))nodes.set(key,new Element(key));return nodes.get(key);}
-  const context={...payroll,...model,...conversation,...personal,...personalModel,Playback,document:{querySelector:node,querySelectorAll:()=>[],addEventListener(){},createElement:()=>new Element('created')},window:{innerWidth:1440,innerHeight:1000,scrollTo(){},addEventListener(){}},matchMedia:()=>({matches:true}),requestAnimationFrame:()=>1,cancelAnimationFrame(){},setTimeout:()=>1,clearTimeout(){},console};
+  const context={...motion,...payroll,...model,...conversation,...personal,...personalModel,mountMotion(){},pressFeedback(){},Playback,document:{querySelector:node,querySelectorAll:()=>[],addEventListener(){},createElement:()=>new Element('created')},window:{innerWidth:1440,innerHeight:1000,scrollTo(){},addEventListener(){}},matchMedia:()=>({matches:true}),requestAnimationFrame:()=>1,cancelAnimationFrame(){},setTimeout:()=>1,clearTimeout(){},console};
   vm.createContext(context);
   const source=(await readFile(new URL('../app.mjs',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'');
   vm.runInContext(source+'\nglobalThis.demo={state:()=>state,send,render,answer};',context);
