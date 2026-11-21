@@ -1,0 +1,19 @@
+export const sharedColors={'Кафе и рестораны':'#00d941','Продукты':'#ffb03b','Остальное':'#4bc3d9','Транспорт':'#428bf9','Развлечения':'#a66bff','Техника':'#fa6b78'};
+export const dinnerTransfers=[{id:'anna',title:'Анна',amount:3000,day:22,time:'15:24',mark:'А'},{id:'danya',title:'Даня',amount:3000,day:22,time:'16:08',mark:'Д'},{id:'maria',title:'Мария',amount:1500,day:22,time:'22:17',mark:'М'}];
+export const kartTransfers=[{id:'maxim',title:'Максим',amount:3000,day:14,time:'19:24',mark:'М'},{id:'olya',title:'Оля',amount:3000,day:14,time:'20:10',mark:'О'},{id:'sasha',title:'Саша',amount:3000,day:15,time:'10:05',mark:'С'}];
+export const dinnerPayment={id:'restaurant',title:'Ресторан',amount:-8000,day:22,time:'14:00',category:'Кафе и рестораны',type:'restaurant'};
+export const kartPayment={id:'kart',title:'Картинг',amount:-12000,day:14,time:'19:00',category:'Развлечения',mark:'К',type:'kart'};
+export const sharedPayments=[{id:'market',title:'Маркетплейс',amount:-9000,day:28,category:'Остальное',mark:'…'},{id:'dns',title:'DNS',amount:-200000,day:25,category:'Техника',mark:'DNS'},dinnerPayment,{id:'grocery-a',title:'Пятёрочка',amount:-14800,day:18,category:'Продукты',type:'shop'},kartPayment,{id:'transport',title:'Транспорт',amount:-6000,day:9,category:'Транспорт',mark:'Т'},{id:'grocery-b',title:'Пятёрочка',amount:-3200,day:5,category:'Продукты',type:'shop'}];
+export function initialShared(){return {dinnerSelected:new Set(),kartSelected:new Set(),appliedDinner:new Set(),appliedKart:new Set(),kartStatus:'pending',snapshots:[],currentSnapshot:null,detailSnapshot:null,detailCategory:null};}
+export function sharedReport(state,category=null){
+ const dinnerIds=new Set(state.dinner||state.appliedDinner),kartIds=new Set(state.kart||state.appliedKart);
+ const dinner=dinnerTransfers.filter(x=>dinnerIds.has(x.id)),kart=kartTransfers.filter(x=>kartIds.has(x.id));
+ const dinnerReturned=dinner.reduce((a,x)=>a+x.amount,0),kartReturned=kart.reduce((a,x)=>a+x.amount,0);
+ const categories=Object.entries(sharedColors).map(([name,color])=>[name,sharedPayments.filter(x=>x.category===name).reduce((a,x)=>a-x.amount,0)-(name==='Кафе и рестораны'?dinnerReturned:name==='Развлечения'?kartReturned:0),color]);
+ const shown=categories.filter(x=>!category||x[0]===category);
+ const ledger=[...sharedPayments,...dinnerTransfers.filter(x=>x.id!=='maria'||dinnerIds.has(x.id)).map(x=>({...x,category:'Перевод по СБП',linkedCategory:'Кафе и рестораны',confirmed:dinnerIds.has(x.id),episode:'ресторан'})),...kartTransfers.map(x=>({...x,category:'Перевод по СБП',linkedCategory:'Развлечения',confirmed:kartIds.has(x.id),episode:'картинг'}))].filter(x=>!category||x.category===category||(x.confirmed&&x.linkedCategory===category)).sort((a,b)=>b.day-a.day||(b.time||'').localeCompare(a.time||''));
+ return {raw:sharedPayments.filter(x=>!category||x.category===category).reduce((a,x)=>a-x.amount,0),total:shown.reduce((a,x)=>a+x[1],0),categories:shown,dinnerReturned,kartReturned,returned:dinnerReturned+kartReturned,dinnerOwn:8000-dinnerReturned,kartOwn:12000-kartReturned,ledger};
+}
+export function saveSharedSnapshot(state){const snap={id:'shared-'+state.snapshots.length,dinner:[...state.appliedDinner],kart:[...state.appliedKart]};state.snapshots.push(snap);state.currentSnapshot=snap.id;return snap;}
+export function sharedSnapshot(state,id=state.currentSnapshot){return state.snapshots.find(x=>x.id===id)||{dinner:[],kart:[]};}
+export function visualSharedShares(values,minimum=.065){const total=values.reduce((a,x)=>a+x,0),shares=values.map(x=>x/total),result=[...shares],fixed=new Set();if(!total)return values.map(()=>0);for(let pass=0;pass<values.length;pass++){const left=1-fixed.size*minimum,weight=shares.reduce((a,v,i)=>a+(fixed.has(i)?0:v),0);let changed=false;for(let i=0;i<values.length;i++)if(!fixed.has(i)){result[i]=shares[i]/weight*left;if(result[i]<minimum){fixed.add(i);result[i]=minimum;changed=true;}}if(!changed)break;}return result;}
