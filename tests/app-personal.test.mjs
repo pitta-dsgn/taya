@@ -1,3 +1,4 @@
+import {scenarioHint} from '../scenario-hints.mjs';
 import * as shared from '../shared.mjs';
 import * as sharedModel from '../shared-model.mjs';
 import {test} from 'node:test';
@@ -25,7 +26,7 @@ test('the application completes all three final flows and returns analytics to c
     animate(){return {pause(){},cancel(){},finished:Promise.resolve()};}
   }
   function node(key){if(!nodes.has(key))nodes.set(key,new Element(key));return nodes.get(key);}
-  const context={...shared,...sharedModel,...motion,...payroll,...model,...conversation,...personal,...personalModel,mountMotion(){},syncCompletion(){},pressFeedback(){},Playback,document:{querySelector:node,querySelectorAll:()=>[],addEventListener(){},createElement:()=>new Element('created')},window:{innerWidth:1440,innerHeight:1000,scrollTo(){},addEventListener(){}},matchMedia:()=>({matches:true}),requestAnimationFrame:()=>1,cancelAnimationFrame(){},setTimeout:()=>1,clearTimeout(){},console};
+  const context={scenarioHint,...shared,...sharedModel,...motion,...payroll,...model,...conversation,...personal,...personalModel,mountMotion(){},syncCompletion(){},pressFeedback(){},Playback,document:{querySelector:node,querySelectorAll:()=>[],addEventListener(){},createElement:()=>new Element('created')},window:{innerWidth:1440,innerHeight:1000,scrollTo(){},addEventListener(){}},matchMedia:()=>({matches:true}),requestAnimationFrame:()=>1,cancelAnimationFrame(){},setTimeout:()=>1,clearTimeout(){},console};
   vm.createContext(context);
   const source=(await readFile(new URL('../app.mjs',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'');
   vm.runInContext(source+'\nglobalThis.demo={state:()=>state,send,render,answer,finish,completedScenarios,playReimbursement};',context);
@@ -70,7 +71,7 @@ test('the application completes all three final flows and returns analytics to c
   await click('s-summary');await click('s-unsure');assert.equal(state.step,'salary-uncertain');
   state.scenario='friends';state.shared=sharedModel.initialShared();state.step='welcome';
   node('#message').value='В ноябре оплатила ресторан за друзей, потом они вернули свою часть. Хочу увидеть только свои расходы';demo.send();
-  assert.equal(state.step,'friends-confirm');assert.equal(state.shared.dinnerSelected.size,0);
+  assert.equal(state.step,'friends-confirm');assert.match(node('#scenario-hint-text').textContent,/Аней и Даней/);assert.equal(state.shared.dinnerSelected.size,0);
   await click('f-toggle',{kind:'dinner',id:'anna'});await click('f-toggle',{kind:'dinner',id:'danya'});
   await click('f-dinner-apply');assert.equal(state.step,'friends-result');assert.match(node('#app').innerHTML,/247 000 ₽/);
   await click('f-detail-open',{snapshot:'shared-0'});assert.equal(state.overlay,'shared-november');

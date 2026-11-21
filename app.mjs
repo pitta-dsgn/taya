@@ -1,13 +1,14 @@
-import {syncCompletion} from './completion.mjs?v=48';
-import {initialShared} from './shared-model.mjs?v=48';
-import {sharedAnswer,sharedSheet,sharedAction,mountShared,sharedDonut,sharedLegend} from './shared.mjs?v=48';
-import {mountMotion,pressFeedback} from './motion.mjs?v=48';
-import {initialSalary,salaryAnswer,salarySheet,salaryAction,salaryTextRequest} from './salary.mjs?v=48';
-import {initialPersonal} from './personal-model.mjs?v=48';
-import {personalAnswer,personalSheet,personalAction,personalTextRequest,mountPersonal,personalDonut} from './personal.mjs?v=48';
-import {refunds,salary,categories,money,typo,escape,refundReport,expenseReport,salaryReport,detectScenario} from './model.mjs?v=48';
-import {addMessage,updateLastAnswer,cleanRequest,INTRO_DURATION,INTRO_STEPS} from './conversation.mjs?v=48';
-import {Playback} from './playback.mjs?v=48';
+import {scenarioHint} from './scenario-hints.mjs?v=49';
+import {syncCompletion} from './completion.mjs?v=49';
+import {initialShared} from './shared-model.mjs?v=49';
+import {sharedAnswer,sharedSheet,sharedAction,mountShared,sharedDonut,sharedLegend} from './shared.mjs?v=49';
+import {mountMotion,pressFeedback} from './motion.mjs?v=49';
+import {initialSalary,salaryAnswer,salarySheet,salaryAction,salaryTextRequest} from './salary.mjs?v=49';
+import {initialPersonal} from './personal-model.mjs?v=49';
+import {personalAnswer,personalSheet,personalAction,personalTextRequest,mountPersonal,personalDonut} from './personal.mjs?v=49';
+import {refunds,salary,categories,money,typo,escape,refundReport,expenseReport,salaryReport,detectScenario} from './model.mjs?v=49';
+import {addMessage,updateLastAnswer,cleanRequest,INTRO_DURATION,INTRO_STEPS} from './conversation.mjs?v=49';
+import {Playback} from './playback.mjs?v=49';
 const $=s=>document.querySelector(s),app=$('#app');
 const icon=n=>`<span class="icon icon-${n}" style="--icon-url:url('./assets/icons/${n}.svg')" aria-hidden="true"></span>`;
 const btn=(action,label,cls='quick-reply',attrs='')=>`<button class="${cls}" data-action="${action}" ${attrs}>${label}</button>`;
@@ -84,7 +85,8 @@ $('#chat-guide').hidden=state.mode!=='chat';
 $('#other-task').disabled=typing;
 $('#playback-panel').hidden=state.mode!=='intro';
 const reimbursement=state.scenario==='salary'&&state.step==='salary-summary'&&state.mode==='chat'&&!state.overlay;
-$('#scenario-picker').hidden=!choosing;$('#reimbursement-guide').hidden=!reimbursement;$('.demo-guide').hidden=!choosing&&!reimbursement;
+const hint=scenarioHint(state);$('#scenario-hint').hidden=!hint;$('#scenario-hint-text').textContent=typo(hint);
+$('#scenario-picker').hidden=!choosing;$('#reimbursement-guide').hidden=!reimbursement;$('.demo-guide').hidden=!choosing&&!reimbursement&&!hint;
 $('#completion').hidden=true;$('#scenario-heading').textContent=completedScenarios.size?'Выберите другую задачу':'Выберите задачу';syncPicker();
 fitPhone();$('#toggle-playback').textContent=playback?.running?'Пауза':'Продолжить';}
 function showTouch(selector){const el=app.querySelector(selector);if(!el)return;pressFeedback(el);const rect=el.getBoundingClientRect(),root=app.getBoundingClientRect(),scale=root.width/app.offsetWidth;const touch=document.createElement('span');touch.className='demo-touch';touch.style.left=(rect.left+rect.width*.65-root.left)/scale+'px';touch.style.top=(rect.top+rect.height*.5-root.top)/scale+'px';app.append(touch);setTimeout(()=>touch.remove(),850);}
