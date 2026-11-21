@@ -31,7 +31,7 @@ GitHub Pages: Settings → Pages → Deploy from a branch → main → / (root).
 
 https://pitta-dsgn.github.io/taya/
 
-SVG icons and illustrations live in `assets/icons/`. Navigation, chart controls and merchant icons are exported from the source Figma components. The phone uses an explicit SF Pro / native Apple system font stack. On platforms without these fonts, the installed sans-serif fallback is used; proprietary Apple font files are not redistributed.
+SVG icons and illustrations live in `assets/icons/`. Navigation, chart controls and merchant icons are exported from the source Figma components. The prototype loads the bundled variable SF Pro from `assets/fonts/sf-pro.woff2`, including Cyrillic. Font weights and optical sizing use the font’s native axes.
 
 ## Validation
 

@@ -1,10 +1,10 @@
-import {mountMotion,pressFeedback} from './motion.mjs?v=39';
-import {initialSalary,salaryAnswer,salarySheet,salaryAction,salaryTextRequest} from './salary.mjs?v=39';
-import {initialPersonal} from './personal-model.mjs?v=39';
-import {personalAnswer,personalSheet,personalAction,personalTextRequest,mountPersonal,personalDonut} from './personal.mjs?v=39';
-import {refunds,salary,categories,money,typo,escape,refundReport,expenseReport,salaryReport,detectScenario} from './model.mjs?v=39';
-import {addMessage,updateLastAnswer,cleanRequest,INTRO_DURATION,INTRO_STEPS} from './conversation.mjs?v=39';
-import {Playback} from './playback.mjs?v=39';
+import {mountMotion,pressFeedback} from './motion.mjs?v=40';
+import {initialSalary,salaryAnswer,salarySheet,salaryAction,salaryTextRequest} from './salary.mjs?v=40';
+import {initialPersonal} from './personal-model.mjs?v=40';
+import {personalAnswer,personalSheet,personalAction,personalTextRequest,mountPersonal,personalDonut} from './personal.mjs?v=40';
+import {refunds,salary,categories,money,typo,escape,refundReport,expenseReport,salaryReport,detectScenario} from './model.mjs?v=40';
+import {addMessage,updateLastAnswer,cleanRequest,INTRO_DURATION,INTRO_STEPS} from './conversation.mjs?v=40';
+import {Playback} from './playback.mjs?v=40';
 const $=s=>document.querySelector(s),app=$('#app');
 const icon=n=>`<span class="icon icon-${n}" style="--icon-url:url('./assets/icons/${n}.svg')" aria-hidden="true"></span>`;
 const btn=(action,label,cls='quick-reply')=>`<button class="${cls}" data-action="${action}">${label}</button>`;
