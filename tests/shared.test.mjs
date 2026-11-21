@@ -22,7 +22,12 @@ test('no preselection, direct chart result, two karting actions, and skip preser
  const state={scenario:'friends',step:'friends-confirm',shared:initialShared()};const turns=[],toast=[];
  const deps={render(){},transition(step,user){state.step=step;turns.push([step,user]);},toast(s){toast.push(s);}};
  const click=(a,dataset={})=>sharedAction(a,{dataset},state,deps);
- assert.equal(sharedAnswer(state).quick[0][3],'disabled');
+ assert.deepEqual(sharedAnswer(state).quick,[]);
+ click('f-toggle',{kind:'dinner',id:'anna'});assert.equal(sharedAnswer(state).quick[0][0],'f-dinner-apply');
+ click('f-toggle',{kind:'dinner',id:'anna'});assert.deepEqual(sharedAnswer(state).quick,[]);
+ state.step='friends-kart';assert.deepEqual(sharedAnswer(state).quick,[]);
+ click('f-toggle',{kind:'kart',id:'maxim'});assert.equal(sharedAnswer(state).quick[0][0],'f-kart-apply');
+ click('f-toggle',{kind:'kart',id:'maxim'});assert.deepEqual(sharedAnswer(state).quick,[]);state.step='friends-confirm';
  click('f-dinner-apply');assert.equal(turns.length,0);assert.equal(toast.length,1);
  click('f-toggle',{kind:'dinner',id:'anna'});click('f-toggle',{kind:'dinner',id:'danya'});click('f-dinner-apply');
  assert.equal(state.step,'friends-result');const answer=sharedAnswer(state);
